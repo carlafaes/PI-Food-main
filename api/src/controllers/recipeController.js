@@ -34,7 +34,7 @@ try{
     }else{
         api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=8b3f2c5a0b0549f5ad1732284ec9716a&addRecipeInformation=true&number=100`)
         db= await Recipe.findAll({include:Diet})
-        console.log('este es el db de el else',db)
+        // console.log('este es el db de el else',db)
 
         if(api || db){
             let apiResponse= api.data.results?.map((ch)=>{
@@ -52,7 +52,7 @@ try{
                 
             })
             response=[...apiResponse,db];
-            console.log('este es el response',response)
+            // console.log('este es el response',response)
              res.status(200).json(response);
         }
     }
