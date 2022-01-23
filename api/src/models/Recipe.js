@@ -6,12 +6,12 @@ module.exports = (sequelize) => {
   sequelize.define('recipe', {
     id:{
       type:DataTypes.UUID,
-      defaultValue:DataTypes.UUID,
+      defaultValue:DataTypes.UUIDV1,
       allowNull:false,
       primaryKey:true
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.JSON,
       allowNull: false,
     },
     summary:{
@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       allowNull:false,
     },
     score:{
-      type:DataTypes.FLOAT,
+      type:DataTypes.INTEGER,
     },
     healthScore:{
       type:DataTypes.FLOAT,

@@ -14,7 +14,7 @@ try{
     let db;
     let response=[];
     if(name){
-        api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=8b3f2c5a0b0549f5ad1732284ec9716a&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
+        api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=892fb186d9cb42c585622f696481982a&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
         db= await Recipe.findAll({
 
             
@@ -32,7 +32,7 @@ try{
         console.log('este es el response ',response)
         res.status(200).send(response.length ? response : 'info title not found')
     }else{
-        api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=8b3f2c5a0b0549f5ad1732284ec9716a&addRecipeInformation=true&number=100`)
+        api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=892fb186d9cb42c585622f696481982a&addRecipeInformation=true&number=100`)
         db= await Recipe.findAll({include:Diet})
         // console.log('este es el db de el else',db)
 
@@ -40,7 +40,7 @@ try{
             let apiResponse= api.data.results?.map((ch)=>{
                 return{
                     id:ch.id,
-                    title:ch.title,
+                    name:ch.title,
                     summary:ch.summary,
                     score:ch.spoonacularScore,
                     healthScore:ch.healthScore,
@@ -56,13 +56,39 @@ try{
              res.status(200).json(response);
         }
     }
-}
-catch(err){
+ }
+    catch(err){
     console.error(err,'error en la funcion allRecipes,de recipeController')
-}
+    }
 }
 
-const postRecipes= async (req,res)=>{}
+const postRecipes= async (req,res)=>{
+    try{
+        const aRecipe= req.body;
+        // console.log(aRecipe)
+
+        let [newRecipe,rec]= await Recipe.findOrCreate({
+             //busca una recetea con las caracteristicas especificadas en el where, y si no lo encuentra lo crea
+            // 'rec' es un booleano que indica si lo tuvo que crear o no
+            where:{
+                name: aRecipe.name,
+                summary: aRecipe.summary,
+                score: aRecipe.score,
+                healthScore: aRecipe.healthScore,
+                steps: aRecipe.steps,
+                // created:true,
+            }
+        })
+
+        
+        await newRecipe.setDiets(aRecipe.diets)
+        console.log(newRecipe)
+        return res.send(newRecipe)
+    }
+    catch(err){
+        console.error(err,'este error viene desde postRecipes')
+    }
+}
 
 const idRecipes= async (req,res)=>{}
 
