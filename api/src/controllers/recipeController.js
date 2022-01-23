@@ -14,7 +14,7 @@ try{
     let db;
     let response=[];
     if(name){
-        api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=892fb186d9cb42c585622f696481982a&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
+        api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=24798308e2c84087a7c1eef0a70ef04d&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
         db= await Recipe.findAll({
 
             
@@ -23,7 +23,6 @@ try{
                 name:{
                     [Op.iLike]:`%{name}%`
                 }
-                
             }
         })
         console.log('este es el api del req title',api)
@@ -32,7 +31,7 @@ try{
         console.log('este es el response ',response)
         res.status(200).send(response.length ? response : 'info title not found')
     }else{
-        api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=892fb186d9cb42c585622f696481982a&addRecipeInformation=true&number=100`)
+        api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=24798308e2c84087a7c1eef0a70ef04d&addRecipeInformation=true&number=100`)
         db= await Recipe.findAll({include:Diet})
         // console.log('este es el db de el else',db)
 
@@ -62,21 +61,23 @@ try{
     }
 }
 
-const postRecipes= async (req,res)=>{
+const postRecipes= async (req,res,next)=>{
     try{
         const aRecipe= req.body;
-        // console.log(aRecipe)
+         console.log(aRecipe)
 
         let [newRecipe,rec]= await Recipe.findOrCreate({
              //busca una recetea con las caracteristicas especificadas en el where, y si no lo encuentra lo crea
             // 'rec' es un booleano que indica si lo tuvo que crear o no
             where:{
+                //id:aRecipe.id,
                 name: aRecipe.name,
                 summary: aRecipe.summary,
                 score: aRecipe.score,
                 healthScore: aRecipe.healthScore,
-                steps: aRecipe.steps,
-                // created:true,
+                steps: aRecipe.steps.toString(),
+                image:aRecipe.image,
+                //created:true,
             }
         })
 
@@ -86,7 +87,7 @@ const postRecipes= async (req,res)=>{
         return res.send(newRecipe)
     }
     catch(err){
-        console.error(err,'este error viene desde postRecipes')
+        next(err,'este error viene desde postRecipes')
     }
 }
 

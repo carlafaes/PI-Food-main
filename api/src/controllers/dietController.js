@@ -64,7 +64,7 @@ const axios= require('axios');
     const preCharge= async()=>{
 
         try{
-            let diets= await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=3ea724e2ab80455ea5becbb52560e121&addRecipeInformation=true&number=100');
+            let diets= await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=24798308e2c84087a7c1eef0a70ef04d&addRecipeInformation=true&number=100');
 
             //if(diets){
                 let response= diets.data.results?.map((e)=>{

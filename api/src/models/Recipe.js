@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       primaryKey:true
     },
     name: {
-      type: DataTypes.JSON,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     summary:{
