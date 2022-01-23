@@ -91,7 +91,37 @@ const postRecipes= async (req,res,next)=>{
     }
 }
 
-const idRecipes= async (req,res)=>{}
+const idRecipes= async (req,res)=>{
+const {id}= req.params;
+
+let recipes;
+try{
+    if(isNaN(id)){
+        recipes= await Recipe.findByPk(id,{
+            include:{
+                model:Diet,
+                attributes:['name'],
+                through:{
+                    attributes:[],
+                }
+            }
+        })
+        console.log(recipes)
+    }
+    else{
+        //API
+        recipes= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=24798308e2c84087a7c1eef0a70ef04d`)
+        recipes= recipes.data;
+    }
+    recipes?
+    res.status(200).json(recipes):
+    res.status(404).send("the recipes doesn't exist")
+}
+catch(error){
+    console.log(error,'error catch del id')
+}
+console.log(idRecipes,'este es el idRecipes')
+}
 
 
 module.exports= {
