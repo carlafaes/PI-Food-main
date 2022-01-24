@@ -106,7 +106,7 @@ try{
                 }
             }
         })
-        console.log(recipes)
+        // console.log(recipes,'este es el recipes')
     }
     else{
         //API
@@ -120,7 +120,7 @@ try{
 catch(error){
     console.log(error,'error catch del id')
 }
-console.log(idRecipes,'este es el idRecipes')
+// console.log(idRecipes,'este es el idRecipes')
 }
 
 
