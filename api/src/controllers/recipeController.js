@@ -9,12 +9,14 @@ console.log('entre a la fn')
 
 //-----------search x name-----------
 try{
-    let {name}= req.query;
+    let {name,page}= req.query;
     let api;
     let db;
     let response=[];
+    page = page ? page : 1;
+    const recipesPerPage= 9
     if(name){
-        api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=8b65bd6c165248feb5c7f87a3701b6a6&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
+        api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=d9217ab8324c4b49b7132d56c2d7405f&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
         db= await Recipe.findAll({
 
             
@@ -31,7 +33,7 @@ try{
         console.log('este es el response ',response)
         res.status(200).send(response.length ? response : 'info title not found')
     }else{
-        api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=8b65bd6c165248feb5c7f87a3701b6a6&addRecipeInformation=true&number=100`)
+        api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=d9217ab8324c4b49b7132d56c2d7405f&addRecipeInformation=true&number=100`)
         db= await Recipe.findAll({include:Diet})
         // console.log('este es el db de el else',db)
 
@@ -51,10 +53,19 @@ try{
                 
             })
             response=[...apiResponse,db];
-            // console.log('este es el response',response)
-             res.status(200).json(response);
+             console.log('este es el response',response)
+            //  res.status(200).json(response);
         }
     }
+        let rec= response.slice((recipesPerPage * (page- 1)),(recipesPerPage * (page - 1) + recipesPerPage))
+    
+        response? res.status(200).send({
+            total: response,
+            result:rec,
+            
+        }) : res.status(404).send('No hay paginas')
+    
+
  }
     catch(err){
     console.error(err,'error en la funcion allRecipes,de recipeController')
@@ -110,7 +121,7 @@ try{
     }
     else{
         //API
-        recipes= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=8b65bd6c165248feb5c7f87a3701b6a6`)
+        recipes= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=d9217ab8324c4b49b7132d56c2d7405f`)
         recipes= recipes.data;
     }
     recipes?
@@ -125,8 +136,10 @@ catch(error){
 
 
 
+
 module.exports= {
     allRecipes,
     postRecipes,
-    idRecipes
+    idRecipes,
+    
 }

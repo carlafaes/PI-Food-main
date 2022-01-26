@@ -5,7 +5,7 @@ const axios= require('axios');
     const preCharge= async()=>{
 
         try{
-            let diets= await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=8b65bd6c165248feb5c7f87a3701b6a6&addRecipeInformation=true&number=100');
+            let diets= await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=d9217ab8324c4b49b7132d56c2d7405f&addRecipeInformation=true&number=100');
 
             
                 let response= diets.data.results?.map((e)=>{

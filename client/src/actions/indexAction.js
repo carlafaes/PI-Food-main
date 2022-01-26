@@ -9,11 +9,12 @@ export function getRec(){
     console.log('entre al action fn')
     return async (dispatch) => {
         let infoGet = await axios.get(ROUT_GET_RECIPES);
-        let inf= infoGet.data
+        let inf= infoGet.data;
+        
         console.log(inf, 'este es el info de actions');
         return dispatch({
             type: GET_RECIPES,
-            payload: inf,
+            payload: inf
             
         });
     }
