@@ -1,28 +1,29 @@
 import React from "react";
 import { useEffect,useState } from "react";
 import Card from "./Card";
+import Order from './Order'
 import Pagination from "./Pagination";
 import { useDispatch,useSelector } from "react-redux";
-import { getRec } from "../actions/indexAction";
+import { getRec,getDiets } from "../actions/indexAction";
 
 
 export default function Cards(){
-    const renderRec= useSelector((state)=> state.filtered? state.filtered.result : 'aun no hay nada' );
-    const page= useSelector((state)=> state.filtered? state.filtered.total : 'aun no hay page')
+    const renderRec= useSelector((state)=> state.filtered? state.filtered : 'aun no hay nada' );
     const dispatch= useDispatch();
+    const [order,setOrder]= useState('')
     const [currentPage,setCurrentPage]= useState(1)
-//     const renderRec= useSelector((state)=> state.filtered? state.filtered.result : 'aun no hay nada' );
-//     const page= useSelector((state)=> state.filtered? state.filtered.total : 'aun no hay page')
-//    const [recipeXP,setRecipeXP]= useState(9)
-  
-const paginated= (pageNumber)=>{
-    setCurrentPage(pageNumber);
-}
-console.log(renderRec,'render rec')
-    console.log(page,'page')
+    const [loading,setLoading]= useState(false)
+
+
+   console.log(renderRec,'render rec')
+
+
     useEffect(()=>{
+        setLoading(true)
         dispatch(getRec());
+        // dispatch(getDiets())
         console.log(getRec())
+        setLoading(false)
 
     },[dispatch]);
 
@@ -30,35 +31,27 @@ console.log(renderRec,'render rec')
         <div>
             <div>Food App</div>
             <div>
-                {renderRec.length > 0 ?
-            <Pagination
-             paginated= {paginated}
-             
-            /> :
-            <div>Loading...</div>   
-            } 
-             </div>
+                <Order set={setOrder} />
+            </div>
+            
             <div>
                   {
-                 renderRec ? 
-                 (
+                 loading ?  <div>
+                 <h1>Loading...</h1>
+                </div> :
+                 
                     Object.values(renderRec).map((recip,index)=>(
                         <div key={index}>
                             <Card
                             id={recip.id}
-                            name={recip.name}
+                            name={recip.name? recip.name : 'dont have name'}
                             image={recip.image}
                             diets={recip.diets?recip.diets.map((el)=> el.name + ', '
                             ): 'does not have diets ☹️'}
                             />
                         </div>
                     ))
-                ) :
-                (
-                    <div>
-                        <h1>Loading...</h1>
-                    </div>
-                )
+                
             }  
             </div>
         </div>

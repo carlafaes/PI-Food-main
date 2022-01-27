@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Card({name,image,diets,id}){
     
     
-    console.log(name,diets)
+    // //console.log(name,diets)
     return(
         <div>
             <div>

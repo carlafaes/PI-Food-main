@@ -1,11 +1,12 @@
 const {Diet} = require('../db');
 const axios= require('axios');
-
+const {API_KEY}= process.env;
+require('dotenv').config();
 
     const preCharge= async()=>{
 
         try{
-            let diets= await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=d9217ab8324c4b49b7132d56c2d7405f&addRecipeInformation=true&number=100');
+            let diets= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
 
             
                 let response= diets.data.results?.map((e)=>{

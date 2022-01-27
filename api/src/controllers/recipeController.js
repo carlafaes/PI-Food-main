@@ -9,14 +9,13 @@ console.log('entre a la fn')
 
 //-----------search x name-----------
 try{
-    let {name,page}= req.query;
+    let {name}= req.query;
     let api;
     let db;
     let response=[];
-    page = page ? page : 1;
-    const recipesPerPage= 9
+   
     if(name){
-        api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=d9217ab8324c4b49b7132d56c2d7405f&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
+        api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
         db= await Recipe.findAll({
 
             
@@ -33,7 +32,7 @@ try{
         console.log('este es el response ',response)
         res.status(200).send(response.length ? response : 'info title not found')
     }else{
-        api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=d9217ab8324c4b49b7132d56c2d7405f&addRecipeInformation=true&number=100`)
+        api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
         db= await Recipe.findAll({include:Diet})
         // console.log('este es el db de el else',db)
 
@@ -53,18 +52,20 @@ try{
                 
             })
             response=[...apiResponse,db];
-             console.log('este es el response',response)
+            const resF=response.flat();
+            console.log('este es el response',resF)
+            //  let responseWithOutEmptys=  resF.filter((e => e.find(a => a.includes([]))))
+            //  console.log(responseWithOutEmptys)
             //  res.status(200).json(response);
+
+            resF? res.status(200).send(resF) : res.status(404).send('No hay paginas')
         }
+        
+
     }
-        let rec= response.slice((recipesPerPage * (page- 1)),(recipesPerPage * (page - 1) + recipesPerPage))
+        
     
-        response? res.status(200).send({
-            total: response,
-            result:rec,
-            
-        }) : res.status(404).send('No hay paginas')
-    
+           
 
  }
     catch(err){
@@ -121,7 +122,7 @@ try{
     }
     else{
         //API
-        recipes= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=d9217ab8324c4b49b7132d56c2d7405f`)
+        recipes= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
         recipes= recipes.data;
     }
     recipes?
