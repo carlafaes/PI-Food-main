@@ -3,7 +3,7 @@ import { GET_RECIPES,GET_DIETS,GET_DETAILS,FILTER,ORDER } from "../actions/types
 const initialState={
     recipes:[],
     filtered:[],
-    details:[],
+    details:{},
     diets:[],
 }
 

@@ -109,15 +109,27 @@ const {id}= req.params;
 let recipes;
 try{
     if(isNaN(id)){
-        recipes= await Recipe.findByPk(id,{
-            include:{
-                model:Diet,
-                attributes:['name'],
-                through:{
-                    attributes:[],
+        recipes= await Recipe.findAll({
+            where:{
+                id:{
+                    [Op.eq]: id
                 }
-            }
-        })
+            },
+            include:[{
+                model:Diet
+            }]
+        })    
+    
+    
+        // recipes= await Recipe.findByPk(id,{
+        //     include:{
+        //         model:Diet,
+        //         attributes:['name'],
+        //         through:{
+        //             attributes:[],
+        //         }
+        //     }
+        // })
         // console.log(recipes,'este es el recipes')
     }
     else{

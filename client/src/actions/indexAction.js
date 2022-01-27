@@ -21,12 +21,13 @@ export function getRec(){
 }
 export function getDetails(id){
     return async(dispatch)=>{
-        const details= await axios.get('http://localhost:3001/recipe/' + id);
-        const data= details.data;
-        console.log('este es el data detail', data)
+        const details2= await (await axios.get('http://localhost:3001/recipe/' + id)).data;
+        console.log(details2,'details llamado axios')
+        // const data= details2.data;
+        // console.log('este es el data getdetail', data)
         return dispatch({
             type:GET_DETAILS,
-            payload:data,
+            payload:details2,
         })
     }
 }
