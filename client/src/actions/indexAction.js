@@ -1,4 +1,4 @@
-import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,FILTER } from "./types";
+import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,FILTER,ORDER_BY_SCORE } from "./types";
 import axios from 'axios';
 
 export const ROUT_GET_RECIPES = `http://localhost:3001/recipe/getRecipes`;
@@ -58,4 +58,10 @@ export function filter(value){
         })
     }
 
+}
+export function orderByScore(value){
+    return{
+        type:ORDER_BY_SCORE,
+        payload:value,
+    }
 }

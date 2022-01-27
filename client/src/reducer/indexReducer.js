@@ -1,4 +1,4 @@
-import { GET_RECIPES,GET_DIETS,GET_DETAILS,FILTER,ORDER } from "../actions/types";
+import { GET_RECIPES,GET_DIETS,GET_DETAILS,FILTER,ORDER,ORDER_BY_SCORE } from "../actions/types";
 
 const initialState={
     recipes:[],
@@ -57,6 +57,26 @@ export default function rootReducer(state= initialState,action){
                 ...state,
                 diets:action.payload,
             }
+        case ORDER_BY_SCORE:
+            const stateScore=state.filtered;
+            console.log(stateScore)
+            if(action.payload === 'min'){
+                 const scoreAsc = (a, b) => 
+                 Number(a.score) - 
+                 Number(b.score) 
+                 stateScore.sort(scoreAsc)
+
+            }
+            if(action.payload === 'max'){
+                const scoreDsc = (a, b) => 
+                Number(b.score) - 
+                Number(a.score) 
+                stateScore.sort(scoreDsc)
+            }
+            return{
+                ...state,
+               filtered:stateScore
+            }   
             
 
         default:

@@ -3,6 +3,7 @@ import { useEffect,useState } from "react";
 import Card from "./Card";
 import Order from './Order'
 import Pagination from "./Pagination";
+import OrderByScore from "./OrderScore";
 import { useDispatch,useSelector } from "react-redux";
 import { getRec,getDiets } from "../actions/indexAction";
 
@@ -32,6 +33,9 @@ export default function Cards(){
             <div>Food App</div>
             <div>
                 <Order set={setOrder} />
+            </div>
+            <div>
+                <OrderByScore set={setOrder} />
             </div>
             
             <div>
