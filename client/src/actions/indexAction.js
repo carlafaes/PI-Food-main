@@ -1,4 +1,4 @@
-import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,FILTER,ORDER_BY_SCORE } from "./types";
+import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,FILTER,ORDER_BY_SCORE,ORDER_BY_DIETS } from "./types";
 import axios from 'axios';
 
 export const ROUT_GET_RECIPES = `http://localhost:3001/recipe/getRecipes`;
@@ -10,11 +10,12 @@ export function getRec(){
     return async (dispatch) => {
         let infoGet = await axios.get(ROUT_GET_RECIPES);
         let inf= infoGet.data;
+        let infoData=inf.flat()
         
         console.log(inf, 'este es el info de actions');
         return dispatch({
             type: GET_RECIPES,
-            payload: inf
+            payload: infoData
             
         });
     }
@@ -63,5 +64,12 @@ export function orderByScore(value){
     return{
         type:ORDER_BY_SCORE,
         payload:value,
+    }
+}
+
+export function orderByDiets(payload){
+    return{
+        type: ORDER_BY_DIETS,
+        payload,
     }
 }

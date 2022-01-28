@@ -1,4 +1,5 @@
-import { GET_RECIPES,GET_DIETS,GET_DETAILS,FILTER,ORDER,ORDER_BY_SCORE } from "../actions/types";
+import { filter } from "../actions/indexAction";
+import { GET_RECIPES,GET_DIETS,GET_DETAILS,FILTER,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS } from "../actions/types";
 
 const initialState={
     recipes:[],
@@ -15,7 +16,7 @@ export default function rootReducer(state= initialState,action){
                 ...state,
                 recipes: action.payload,
                 filtered:action.payload,//cargo todas las recetas tambien en ese estado para que luego filtre sobre la cantidad completa de recetas
-               
+                diets:action.payload
             }
         case ORDER:
             let orderState= state.recipes;
@@ -76,7 +77,34 @@ export default function rootReducer(state= initialState,action){
             return{
                 ...state,
                filtered:stateScore
-            }   
+            }  
+        case ORDER_BY_DIETS:
+            const allDiets= state.filtered;
+            let filterDiets=[]
+                      // const filterDiets= action.payload === 'diets' ?
+            // allDiets : allDiets.filter(el => el.diets.find(e =>{
+            //     if(e.name === action.payload){
+            //         return el;
+            //     }
+            // }))
+            // console.log(filterDiets,'filterDiets')
+             if(action.payload === 'diets'){
+                 filterDiets= allDiets;
+            }
+            else{
+                filterDiets='createdInDb' === true?filterDiets= allDiets.filter(e => e.diets.name) : allDiets.filter(el => el.diets.find(e =>{
+                         if(e.name === action.payload){
+                             return el;
+                         }
+                     }))
+            }
+            console.log(allDiets,'allDiets')
+            console.log(filterDiets,'filterDiets')
+  
+           return{
+                ...state,
+                recipes:filterDiets
+            } 
             
 
         default:

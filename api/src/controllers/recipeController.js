@@ -136,6 +136,7 @@ try{
         //API
         recipes= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
         recipes= recipes.data;
+
     }
     recipes?
     res.status(200).json(recipes):
