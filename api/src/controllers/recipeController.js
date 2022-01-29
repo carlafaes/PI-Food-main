@@ -95,7 +95,7 @@ const postRecipes= async (req,res,next)=>{
 
         
         await newRecipe.setDiets(aRecipe.diets)
-        console.log(newRecipe)
+        // console.log(newRecipe)
         return res.send(newRecipe)
     }
     catch(err){

@@ -10,22 +10,31 @@ import { getRec,getDiets } from "../actions/indexAction";
 
 
 export default function Cards(){
-    const renderRec= useSelector((state)=> state.filtered? state.filtered : 'aun no hay nada' );
+    const renderRec= useSelector((state)=> state.filtered? state.filtered : 'Loading' );
     const dispatch= useDispatch();
     const [order,setOrder]= useState('')
     const [currentPage,setCurrentPage]= useState(1)
-    const [loading,setLoading]= useState(false)
+    const [recXPage,setRecXPage]= useState(8);
+    console.log(recXPage,'recXpage')
+    const max= Math.ceil(renderRec.length/recXPage);
+
+    // const indexLastRec= currentPage * recXPage;
+    // const indexFirstRec= indexLastRec - recXPage;
+    // const currentRec= renderRec.slice(indexFirstRec,indexLastRec);
+
+    //  const clickPage=(pages)=>{
+    //     setCurrentPage(pages);
+    // }
 
 
    console.log(renderRec,'render rec')
 
 
     useEffect(()=>{
-        setLoading(true)
         dispatch(getRec());
         // dispatch(getDiets())
         console.log(getRec())
-        setLoading(false)
+
 
     },[dispatch]);
 
@@ -39,16 +48,24 @@ export default function Cards(){
                 <OrderByScore set={setOrder} />
             </div>
             <div>
-                <FilterByDiets/>
+                <FilterByDiets set={setCurrentPage}/>
+            </div>
+            <div>
+                {Object.values(renderRec).length > 0 ?
+            <Pagination 
+            currentPage= {currentPage}
+            setCurrentPage={setCurrentPage}
+            max= {max} />
+            :
+            <div>Loading...</div>    
+            }
             </div>
             
             <div>
                   {
-                 loading ?  <div>
-                 <h1>Loading...</h1>
-                </div> :
-                 
-                    Object.values(renderRec).map((recip,index)=>(
+                    renderRec ?  Object.values(renderRec).slice(
+                        (currentPage - 1)* recXPage, (currentPage -1) * recXPage + recXPage).map(
+                            (recip,index)=>(
                         <div key={index}>
                             <Card
                             id={recip.id}
@@ -58,7 +75,10 @@ export default function Cards(){
                             ): 'does not have diets ☹️'}
                             />
                         </div>
-                    ))
+                    )):
+                <div>
+                 <h1>Loading...</h1>
+                </div> 
                 
             }  
             </div>
