@@ -118,8 +118,8 @@ const postRecipes= async (req,res,next)=>{
         })
 
         
-        await newRecipe.setDiets(aRecipe.diets)
-        // console.log(newRecipe)
+        await newRecipe.setDiets(aRecipe.diets.flat())
+        console.log(newRecipe)
         return res.send(newRecipe)
     }
     catch(err){

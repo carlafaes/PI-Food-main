@@ -12,7 +12,7 @@ import recipeCreated from './img/descarga.jpeg'
 
 
 export default function Cards(){
-    const renderRec= useSelector((state)=> state.filtered? state.filtered : 'Loading' );
+    const renderRec= useSelector((state)=> state.filtered? state.filtered : 'loading' );
     const dispatch= useDispatch();
     const [order,setOrder]= useState('')
     const [currentPage,setCurrentPage]= useState(1)
@@ -67,16 +67,17 @@ export default function Cards(){
                         setCurrentPage={setCurrentPage}
                         max= {max} />
                      :
-                 <div>Loading...</div>    
+                 <div>Recipe doesn't found</div>    
                 }
             </div>
             
             <div>
                   {
-                    renderRec === 'Loading' ? 
+                    renderRec === 'loading' ? 
                     <div>
-                        <h1>Loading</h1>
-                   </div> : Object.values(renderRec).slice(
+                        <h1>loading</h1>
+                   </div> :
+                         Object.values(renderRec).slice(
                         (currentPage - 1)* recXPage, (currentPage -1) * recXPage + recXPage).map(
                             (recip,index)=>(
                         <div key={index}>

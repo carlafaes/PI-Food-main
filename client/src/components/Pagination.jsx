@@ -37,7 +37,7 @@ export default function Pagination({currentPage,setCurrentPage,max}){
 
            <p> de {max}</p>
 
-           <button onClick={nextPage} disabled={currentPage === 13 || currentPage > 13}>next</button>
+           <button onClick={nextPage} disabled={currentPage === max || currentPage > max}>next</button>
          </div>
      )
 }
