@@ -1,5 +1,5 @@
 import React from "react";
-import {useSelector,useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import { orderByDiets } from "../actions/indexAction";
 
 
@@ -9,6 +9,7 @@ export default function FilterByDiets(){
     function handlerFilterDiets(e){
         e.preventDefault();
         dispatch(orderByDiets(e.target.value));
+        
     }
 
     return(

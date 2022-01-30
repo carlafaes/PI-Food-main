@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { getDetails } from "../actions/indexAction";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { GET_DETAILS } from "../actions/types";
+
 
 export default function Details(){
     const dispatch= useDispatch();
@@ -16,14 +16,6 @@ export default function Details(){
         dispatch(getDetails(id))
         
     },[dispatch,id])
-
-    // const summaryCond= {};
-    // if(recipes && recipes.summary){
-    //     summaryCond = <h3>{recipes.summary}</h3>
-    // }
-    // else{
-    //     summaryCond = <div dangerouslySetInnerHTML={{ __html: recipes.summary}} />
-    // }
   
 
     return(

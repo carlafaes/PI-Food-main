@@ -4,6 +4,7 @@ import Cards from './components/Cards';
 import LandingPage from './components/LandingPage';
 import Details from './components/Details';
 import Navbar from './components/NavBar';
+import Create from './components/Create';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/' element={<LandingPage/>} />
         <Route path='/home' element={<Cards/>}/>
         <Route path='/home/:id' element={<Details/>}/>
+        <Route path='/create' element={<Create/>}/>    
       </Routes>
     </div>
   );

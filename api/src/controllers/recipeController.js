@@ -26,11 +26,32 @@ try{
                 }
             }
         })
-        console.log('este es el api del req title',api)
-        console.log('este es el db',db)
-        response=[...db,api];
-        console.log('este es el response ',response)
-        res.status(200).send(response.length ? response : 'info title not found')
+        if(api || db){
+            let apiResponse= api.map((ch)=>{
+                return{
+                    id:ch.id,
+                    name:ch.title,
+                    summary:ch.summary,
+                    score:ch.spoonacularScore,
+                    healthScore:ch.healthScore,
+                    image:ch.image,
+                    steps:ch.analyzedInstructions,//analayzedInstruccions[{name:}]
+                    diets: ch.diets.map((d) => { return { name: d } }),
+
+                }
+                
+            })
+
+            response=[...db,apiResponse];
+            // console.log(apiResponse)
+        }
+        
+         
+        // console.log('este es el api del req title',api)
+        // console.log('este es el db',db)
+        //  response=[...db,apiResponse];
+        // console.log('este es el response ',response)
+        // res.status(200).send(response.length ? response : 'info title not found')
     }else{
         api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
         db= await Recipe.findAll({include:Diet})
@@ -52,23 +73,26 @@ try{
                 
             })
             response=[...apiResponse,db];
-            const resF=response.flat();
-            console.log('este es el response',resF)
+            // const resF=response.flat();
+            // console.log('este es el response',resF)
             //  let responseWithOutEmptys=  resF.filter((e => e.find(a => a.includes([]))))
             //  console.log(responseWithOutEmptys)
             //  res.status(200).json(response);
 
-            resF? res.status(200).send(resF) : res.status(404).send('No hay paginas')
+            // resF? res.status(200).send(resF) : res.status(404).send('No hay paginas')
         }
         
 
     }
+     response=response.flat()
+     response ? res.status(200).send(response) : res.status(404).send('No hay paginas')
+
         
     
            
 
  }
-    catch(err){
+ catch(err){
     console.error(err,'error en la funcion allRecipes,de recipeController')
     }
 }

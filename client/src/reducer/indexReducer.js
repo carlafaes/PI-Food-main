@@ -1,5 +1,4 @@
-import { filter } from "../actions/indexAction";
-import { GET_RECIPES,GET_DIETS,GET_DETAILS,FILTER,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS } from "../actions/types";
+import { GET_RECIPES,GET_DIETS,GET_DETAILS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR } from "../actions/types";
 
 const initialState={
     recipes:[],
@@ -79,7 +78,7 @@ export default function rootReducer(state= initialState,action){
                filtered:stateScore
             }  
         case ORDER_BY_DIETS:
-            const allDiets= state.filtered;
+            const allDiets= state.recipes;
             let filterDiets=[]
                       // const filterDiets= action.payload === 'diets' ?
             // allDiets : allDiets.filter(el => el.diets.find(e =>{
@@ -100,11 +99,20 @@ export default function rootReducer(state= initialState,action){
             }
             console.log(allDiets,'allDiets')
             console.log(filterDiets,'filterDiets')
-  
-           return{
+
+            return{
                 ...state,
-                recipes:filterDiets
+                filtered:filterDiets
             } 
+         case SEARCH_BY_NAME:
+                return {
+                  ...state,
+                  filtered: action.payload,
+                };
+         case ADD_CHAR:
+            return{
+                ...state,
+                    }
             
 
         default:

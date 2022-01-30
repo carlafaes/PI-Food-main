@@ -5,8 +5,10 @@ import Order from './Order'
 import Pagination from "./Pagination";
 import FilterByDiets from "./FilterByDiets";
 import OrderByScore from "./OrderScore";
+import SearchBar from "./SearchBar";
 import { useDispatch,useSelector } from "react-redux";
-import { getRec,getDiets } from "../actions/indexAction";
+import { getRec } from "../actions/indexAction";
+import recipeCreated from './img/descarga.jpeg'
 
 
 export default function Cards(){
@@ -18,16 +20,14 @@ export default function Cards(){
     console.log(recXPage,'recXpage')
     const max= Math.ceil(renderRec.length/recXPage);
 
-    // const indexLastRec= currentPage * recXPage;
-    // const indexFirstRec= indexLastRec - recXPage;
-    // const currentRec= renderRec.slice(indexFirstRec,indexLastRec);
-
-    //  const clickPage=(pages)=>{
-    //     setCurrentPage(pages);
-    // }
-
 
    console.log(renderRec,'render rec')
+
+   function handleClickReset(e){
+       e.preventDefault(e);
+       dispatch(getRec())
+       setCurrentPage(1)
+   }
 
 
     useEffect(()=>{
@@ -40,30 +40,63 @@ export default function Cards(){
 
     return(
         <div>
-            <div>Food App</div>
-            <div>
-                <Order set={setOrder} />
+            
+             <div>Food App</div>
+             <div>
+                 <button onClick={e => {handleClickReset(e)}}>
+                     Reset
+                 </button>
+             </div>
+             <div>
+                    <SearchBar value={setOrder}/>
             </div>
             <div>
-                <OrderByScore set={setOrder} />
+                    <Order set={setOrder} />
             </div>
             <div>
-                <FilterByDiets set={setCurrentPage}/>
+                     <OrderByScore set={setOrder} />
             </div>
             <div>
-                {Object.values(renderRec).length > 0 ?
-            <Pagination 
-            currentPage= {currentPage}
-            setCurrentPage={setCurrentPage}
-            max= {max} />
-            :
-            <div>Loading...</div>    
-            }
+                    <FilterByDiets set={setOrder}/>
+            </div>
+
+            <div>
+                {Object.values(renderRec).length > 2 ?
+                     <Pagination 
+                         currentPage= {currentPage}
+                        setCurrentPage={setCurrentPage}
+                        max= {max} />
+                     :
+                 <div>Loading...</div>    
+                }
             </div>
             
             <div>
                   {
-                    renderRec ?  Object.values(renderRec).slice(
+                    renderRec === 'Loading' ? 
+                    <div>
+                        <h1>Loading</h1>
+                   </div> : Object.values(renderRec).slice(
+                        (currentPage - 1)* recXPage, (currentPage -1) * recXPage + recXPage).map(
+                            (recip,index)=>(
+                        <div key={index}>
+                            <Card
+                            id={recip.id}
+                            name={recip.name? recip.name : 'dont have name'}
+                            image={recip.image? recip.image : recipeCreated}
+                            diets={recip.diets?recip.diets.map((el)=> el.name + ', '
+                            ): 'does not have diets ☹️'}
+                            />
+                        </div>
+                    ))
+                
+            }  
+            </div>
+
+{/*             
+            <div>
+                  {
+                    recipesRender ?  Object.values(recipesRender).slice(
                         (currentPage - 1)* recXPage, (currentPage -1) * recXPage + recXPage).map(
                             (recip,index)=>(
                         <div key={index}>
@@ -76,12 +109,12 @@ export default function Cards(){
                             />
                         </div>
                     )):
-                <div>
-                 <h1>Loading...</h1>
-                </div> 
-                
-            }  
-            </div>
+                        <div>
+                            <h1>Loading...</h1>
+                        </div> 
+                }
+            </div> */}
+ 
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,FILTER,ORDER_BY_SCORE,ORDER_BY_DIETS } from "./types";
+import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR } from "./types";
 import axios from 'axios';
 
 export const ROUT_GET_RECIPES = `http://localhost:3001/recipe/getRecipes`;
@@ -51,15 +51,7 @@ export function orderFil(value){
     })
   }
 }
-export function filter(value){
-    return (dispatch)=>{
-        dispatch({
-            type:FILTER,
-            payload: value,
-        })
-    }
 
-}
 export function orderByScore(value){
     return{
         type:ORDER_BY_SCORE,
@@ -73,3 +65,28 @@ export function orderByDiets(payload){
         payload,
     }
 }
+export const searchByName=(name)=>{
+    return async (dispatch)=>{
+        try{
+            const getName= await axios.get(`http://localhost:3001/recipe/getRecipes?name=${name}`);
+            const searchName=getName.data.flat()
+            console.log(searchName,'este es el search name')
+            return dispatch({
+                type:SEARCH_BY_NAME,
+                payload:searchName
+            })
+        }
+        catch(err){
+            console.log(err,'error del searchByName,action')
+        }
+    }
+}
+export function addChar(payload){
+    return async function(dispatch){
+        const created= await axios.post('http://localhost:3001/recipe/create/',payload);
+        // console.log(created)
+        return created;
+    }
+}
+
+export const addCharType = () => ({type: ADD_CHAR})
