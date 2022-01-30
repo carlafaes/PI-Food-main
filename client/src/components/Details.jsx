@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { getDetails } from "../actions/indexAction";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import imgRecipe from './img/descarga.jpeg'
 
 export default function Details(){
     const dispatch= useDispatch();
@@ -36,7 +36,7 @@ export default function Details(){
 
                     <h3>HealthScore:{recipes.healthScore? recipes.healthScore : recipes[0].healthScore }</h3>
 
-                    <img src={recipes.image? recipes.image : recipes[0].image} alt="imageRecipe" />
+                    <img src={recipes.image? recipes.image : imgRecipe} alt="imageRecipe" />
 
                     <h3>Steps:{recipes.analyzedInstructions? 
                     recipes.analyzedInstructions.map((e)=> e.steps.map((e)=> 

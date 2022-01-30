@@ -17,14 +17,21 @@ try{
     if(name){
         api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
         db= await Recipe.findAll({
-
-            
-            include:Diet,
             where:{
                 name:{
-                    [Op.iLike]:`%{name}%`
+                    [Op.eq]:name
                 }
+            },
+            include:{
+                model:Diet
             }
+            
+            // include:Diet,
+            // where:{
+            //     name:{
+            //         [Op.iLike]:`%{name}%`
+            //     }
+            // }
         })
         if(api || db){
             let apiResponse= api.map((ch)=>{
@@ -42,8 +49,8 @@ try{
                 
             })
 
-            response=[...db,apiResponse];
-            // console.log(apiResponse)
+            response=[...db,apiResponse].flat();
+             console.log(apiResponse)
         }
         
          

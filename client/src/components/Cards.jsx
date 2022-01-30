@@ -48,20 +48,21 @@ export default function Cards(){
                  </button>
              </div>
              <div>
-                    <SearchBar value={setOrder}/>
+             <SearchBar value={setOrder} set={setCurrentPage ? setCurrentPage : <h1>Loading</h1>}/>
+                    
             </div>
             <div>
-                    <Order set={setOrder} />
+                    <Order set={setOrder}/>
             </div>
             <div>
                      <OrderByScore set={setOrder} />
             </div>
             <div>
-                    <FilterByDiets set={setOrder}/>
+                    <FilterByDiets set={setOrder} set={setCurrentPage}/>
             </div>
 
             <div>
-                {Object.values(renderRec).length > 2 ?
+                {Object.values(renderRec).length > 1 ?
                      <Pagination 
                          currentPage= {currentPage}
                         setCurrentPage={setCurrentPage}

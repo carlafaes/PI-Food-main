@@ -20,12 +20,14 @@ export default function SearchBar(){
 
     return(
         <div>
+    
             <form onSubmit={onSubmit}>
-                <div>
-                    <input type="text" placeholder="Search recipe" value={search} onChange={onInputChange} />
-                    <input type="submit" value='🔍' onSubmit={onSubmit} />
-                </div>
-            </form>
+            <div>
+                <input type="text" placeholder="Search recipe" value={search} onChange={onInputChange} />
+                <input type="submit" value='🔍' onSubmit={onSubmit} />
+            </div>
+        </form>
+            
         </div>
     )
 }
