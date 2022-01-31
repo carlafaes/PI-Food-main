@@ -6,6 +6,7 @@ import Pagination from "./Pagination";
 import FilterByDiets from "./FilterByDiets";
 import OrderByScore from "./OrderScore";
 import SearchBar from "./SearchBar";
+import OrderCreated from "./OrderCreated";
 import { useDispatch,useSelector } from "react-redux";
 import { getRec } from "../actions/indexAction";
 import recipeCreated from './img/descarga.jpeg'
@@ -52,17 +53,20 @@ export default function Cards(){
                     
             </div>
             <div>
-                    <Order set={setOrder}/>
+                <OrderCreated set={setOrder}  />
             </div>
             <div>
-                     <OrderByScore set={setOrder} />
+                    <Order set={setOrder} />
+            </div>
+            <div>
+                     <OrderByScore set={setOrder}  />
             </div>
             <div>
                     <FilterByDiets set={setOrder} set={setCurrentPage}/>
             </div>
 
             <div>
-                {Object.values(renderRec).length > 1 ?
+                {renderRec && Object.values(renderRec).length > 0 ?
                      <Pagination 
                          currentPage= {currentPage}
                         setCurrentPage={setCurrentPage}
@@ -94,28 +98,6 @@ export default function Cards(){
                 
             }  
             </div>
-
-{/*             
-            <div>
-                  {
-                    recipesRender ?  Object.values(recipesRender).slice(
-                        (currentPage - 1)* recXPage, (currentPage -1) * recXPage + recXPage).map(
-                            (recip,index)=>(
-                        <div key={index}>
-                            <Card
-                            id={recip.id}
-                            name={recip.name? recip.name : 'dont have name'}
-                            image={recip.image}
-                            diets={recip.diets?recip.diets.map((el)=> el.name + ', '
-                            ): 'does not have diets ☹️'}
-                            />
-                        </div>
-                    )):
-                        <div>
-                            <h1>Loading...</h1>
-                        </div> 
-                }
-            </div> */}
  
         </div>
     )

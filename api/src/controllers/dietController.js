@@ -12,7 +12,7 @@ require('dotenv').config();
                 let response= diets.data.results?.map((e)=>{
                     return{
                         id:e.id,
-                        name: e.diets.toString(),
+                        name: e.diets.toString(),//pasamos de array a string
                     }
                     
                 })

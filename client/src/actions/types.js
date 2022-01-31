@@ -6,5 +6,6 @@ export const ORDER_BY_SCORE= 'ORDER_BY_SCORE';
 export const ORDER_BY_DIETS= 'ORDER_BY_DIETS';
 export const SEARCH_BY_NAME= 'SEARCH_BY_NAME';
 export const ADD_CHAR= 'ADD_CHAR';
+export const FILTER_CREATED= 'FILTER_CREATED';
 
 

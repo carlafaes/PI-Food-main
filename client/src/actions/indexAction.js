@@ -1,4 +1,4 @@
-import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR } from "./types";
+import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR,FILTER_CREATED } from "./types";
 import axios from 'axios';
 
 export const ROUT_GET_RECIPES = `http://localhost:3001/recipe/getRecipes`;
@@ -90,3 +90,10 @@ export function addChar(payload){
 }
 
 export const addCharType = () => ({type: ADD_CHAR})
+
+export function filterCreated(payload){
+    return{
+        type:FILTER_CREATED,
+        payload
+    }
+}

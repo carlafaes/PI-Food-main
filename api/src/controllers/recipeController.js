@@ -15,7 +15,9 @@ try{
     let response=[];
    
     if(name){
+        //hago el pedido a la api del name de la receta
         api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
+        //busco en la db ek nombre
         db= await Recipe.findAll({
             where:{
                 name:{
@@ -26,13 +28,8 @@ try{
                 model:Diet
             }
             
-            // include:Diet,
-            // where:{
-            //     name:{
-            //         [Op.iLike]:`%{name}%`
-            //     }
-            // }
         })
+        //si existen mapeo la info que quiero obtener
         if(api || db){
             let apiResponse= api.map((ch)=>{
                 return{
@@ -43,27 +40,23 @@ try{
                     healthScore:ch.healthScore,
                     image:ch.image,
                     steps:ch.analyzedInstructions,//analayzedInstruccions[{name:}]
-                    diets: ch.diets.map((d) => { return { name: d } }),
+                    diets: ch.diets.map((d) => { return { name: d } }),//mapeo el name del tipo de dieta
 
                 }
                 
             })
-
+            //concateno info de api y db, y le aplico el metodo flat para que aplane arrays anidados
             response=[...db,apiResponse].flat();
              console.log(apiResponse)
         }
         
-         
-        // console.log('este es el api del req title',api)
-        // console.log('este es el db',db)
-        //  response=[...db,apiResponse];
-        // console.log('este es el response ',response)
-        // res.status(200).send(response.length ? response : 'info title not found')
+        
     }else{
+        //pedido a la api
         api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
         db= await Recipe.findAll({include:Diet})
         // console.log('este es el db de el else',db)
-
+        //mapeo la info que necesito
         if(api || db){
             let apiResponse= api.data.results?.map((ch)=>{
                 return{
@@ -110,8 +103,8 @@ const postRecipes= async (req,res,next)=>{
          console.log(aRecipe)
 
         let [newRecipe,rec]= await Recipe.findOrCreate({
-             //busca una recetea con las caracteristicas especificadas en el where, y si no lo encuentra lo crea
-            // 'rec' es un booleano que indica si lo tuvo que crear o no
+             //busca una receta con las caracteristicas especificadas en el where, y si no lo encuentra lo crea
+           
             where:{
                 //id:aRecipe.id,
                 name: aRecipe.name,
@@ -139,6 +132,7 @@ const {id}= req.params;
 
 let recipes;
 try{
+    //busqueda de id alfanumerico
     if(isNaN(id)){
         recipes= await Recipe.findAll({
             where:{
@@ -150,21 +144,9 @@ try{
                 model:Diet
             }]
         })    
-    
-    
-        // recipes= await Recipe.findByPk(id,{
-        //     include:{
-        //         model:Diet,
-        //         attributes:['name'],
-        //         through:{
-        //             attributes:[],
-        //         }
-        //     }
-        // })
-        // console.log(recipes,'este es el recipes')
     }
     else{
-        //API
+        //busqueda id de la api
         recipes= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
         recipes= recipes.data;
 

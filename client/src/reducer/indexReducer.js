@@ -1,4 +1,4 @@
-import { GET_RECIPES,GET_DIETS,GET_DETAILS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR } from "../actions/types";
+import { GET_RECIPES,GET_DIETS,GET_DETAILS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR,FILTER_CREATED } from "../actions/types";
 
 const initialState={
     recipes:[],
@@ -80,13 +80,6 @@ export default function rootReducer(state= initialState,action){
         case ORDER_BY_DIETS:
             const allDiets= state.recipes;
             let filterDiets=[]
-                      // const filterDiets= action.payload === 'diets' ?
-            // allDiets : allDiets.filter(el => el.diets.find(e =>{
-            //     if(e.name === action.payload){
-            //         return el;
-            //     }
-            // }))
-            // console.log(filterDiets,'filterDiets')
              if(action.payload === 'diets'){
                  filterDiets= allDiets;
             }
@@ -113,6 +106,16 @@ export default function rootReducer(state= initialState,action){
             return{
                 ...state,
                     }
+        case FILTER_CREATED:
+        const createdFilter= action.payload === 'created' ?
+        state.recipes.filter((el)=> el.createdInDb) :
+        state.recipes.filter((el)=> !el.createdInDb);
+        const allRec= action.payload === 'all'? state.recipes : createdFilter;
+        console.log(allRec,'allRec')
+        return{
+            ...state,
+            filtered:allRec
+        }  
             
 
         default:
