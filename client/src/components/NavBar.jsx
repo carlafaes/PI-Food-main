@@ -15,17 +15,21 @@ export default function Navbar(){
 
     return(
         <div className='navbar'>
+            <div>
+            <div className="title_food">Food App</div>
+            </div>
             <div onClick={handleClick}>
                 <Link to='/home'>
-                <ul>
-                    <li value='home' className="lista">Home</li>
+                <ul className="ul">
+                    <li value='home' className="lista" id='home'>Home</li>
                 </ul>
                 </Link>
             </div>
+            
             <div>
                 <Link to='/create'>
-                <ul>
-                    <li value='createRec' className="lista" >Create</li>
+                <ul className="ul">
+                    <li value='createRec' className="lista" id='create' >Create</li>
                 </ul>
                 </Link>
             </div>

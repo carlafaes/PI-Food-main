@@ -41,12 +41,16 @@ export default function Cards(){
 
     },[dispatch]);
 
+    const styles={
+        width:'100%'
+    }
+
     return(
-        <div>
+        <div className="container">
             <Navbar className='navbar'/>
-             <div>Food App</div>
+             
              <div>
-                 <button onClick={e => {handleClickReset(e)}}>
+                 <button className="btn_reset" onClick={e => {handleClickReset(e)}}>
                      Reset
                  </button>
              </div>
@@ -81,9 +85,13 @@ export default function Cards(){
             <div>
                   {
                     renderRec === 'loading' ? 
-                    <div>
-                        <h1>loading</h1>
-                   </div> :
+                    <div className="container_loading">
+                        {/* <div className="porcentaje" id="porcentaje">0</div> */}
+                        <div className="progress-bar orange stripes shine">
+                        <span style={styles} className="loading">Loading...</span>
+                        </div>
+                    </div>
+                     :
                          Object.values(renderRec).slice(
                         (currentPage - 1)* recXPage, (currentPage -1) * recXPage + recXPage).map(
                             (recip,index)=>(

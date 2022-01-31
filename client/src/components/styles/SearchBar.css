@@ -1,0 +1,53 @@
+.contSearch{
+    position: absolute;
+    z-index: 200;
+    border-radius: 7px;
+    background:0 0 10px #685d3c,0 0 10px #504020, 0 0 10px #857a7a;
+    top: 17px;
+    left: 320px;
+ 
+ }
+ .submit{
+    color:#b8b098;
+    font-size: 15px;
+    font-family: fantasy;
+    text-decoration: none;
+    padding: 7px 4px;
+    letter-spacing: 4px;
+    transition: 0.4s;
+    overflow: hidden;
+    background:linear-gradient(to right, #d6d69c,#908868);
+    border-radius: 7px;
+    width: 35px;
+    padding-left: -10px;
+    margin-left: -10px;
+    border-style:none;
+ }
+ 
+ 
+ .submit:hover{
+    background: #b8b098;
+    box-shadow: 0 0 10px #403820,0 0 10px #504020, 0 0 10px #3d3030;
+    transition-delay: 0.2s;
+ }
+ 
+ .search{
+    border-radius: 3px;
+    background:linear-gradient(to right, #d6d69c,#908868);
+    width: 0px;
+    height: 23px;
+    border-color: #d6d69c;
+    transition: 1s;
+    font-size: 10px;
+ }
+ .search:hover{
+    background: #504020;
+    box-shadow: 0 0 10px #403820,0 0 10px #504020, 0 0 10px #3d3030;
+    transition-delay: 0.2s;
+    
+ }
+ 
+ .contSearch:hover > .search{
+    width: 90px;
+    
+ }

@@ -1,0 +1,119 @@
+.container_loading{
+    margin: 0;
+    padding: 0;
+}
+.progress-bar{
+    background-color: #b09868;
+    height: 30px;
+    padding: 6px ;
+    width: 100vh;
+    margin: 200px 150px;         
+    border-radius: 10px;
+    box-shadow: 0 1px 5px #b09868 inset, 0 1px 0 #444;           
+}
+
+.progress-bar span {
+    display: inline-block;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+    transition: width .4s ease-in-out; 
+    background-color: #ccc;   
+    margin-top: -50px;
+  }
+
+  .orange span {
+    background-color: #c0b8a0;
+    background-image: linear-gradient(top, #989078, #a0a080);  
+  }
+
+/**** STRIPES ****/
+.stripes span {
+    background-size: 20px 30px;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+      transparent 50%, rgba(187, 144, 144, 0.15) 50%, rgba(153, 135, 118, 0.233) 75%,
+      transparent 75%, transparent);            
+  
+    animation: animate-stripes 3s linear infinite;             
+  }
+  
+  @keyframes animate-stripes {
+    0% {background-position: 0 0;} 100% {background-position: 60px 0;}
+  }
+  
+  /**** SHINE ****/
+  .shine span {
+    position: relative;
+  }
+  
+  .shine span::after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    border-radius: 3px;
+    animation: animate-shine 2s ease-out infinite;             
+  }
+  
+  @keyframes animate-shine {
+    0% {opacity: 0; width: 0;}
+    50% {opacity: .5;}
+    100% {opacity: 0; width: 95%;}
+  }
+  
+  /**** GLOW ****/
+  .glow span {
+    box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;    
+    animation: animate-glow 1s ease-out infinite;          
+  }
+  
+  @keyframes animate-glow {
+    0% { box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;} 
+    50% { box-shadow: 0 5px 5px rgba(255, 255, 255, .3) inset, 0 -5px 5px rgba(255, 255, 255, .3) inset;} 
+    100% { box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;}
+  }
+  .loading{
+      font-size: 15px;
+      letter-spacing: 2px;
+      font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: #908868;
+  }
+
+  .container{
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 170vh;
+      margin-top: -200px;
+      background-size: 1030px 1137px;
+      background-image: url('https://p0.pikist.com/photos/583/129/kitchen-eat-food-cook-cooking-pan-preparation-restaurant.jpg');
+  }
+
+  .btn_reset{
+    position: absolute;
+    color: #786840;
+    list-style: none;
+    text-decoration: none;
+    right: 700px;
+    transition-duration: 0.8s;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    z-index: 60;
+    top: 17px;
+    transition: 0.5s;
+    overflow: hidden;
+    background:linear-gradient(to right, #d6d69c,#908868);
+    border-radius: 5px;
+    border-style:none;
+    padding: 9px 5px;
+  }
+  .btn_reset:hover{
+    background: #b8b098;
+    box-shadow: 0 0 10px #403820,0 0 10px #504020, 0 0 10px #3d3030;
+    transition-delay: 0.2s;
+    
+ }
+  

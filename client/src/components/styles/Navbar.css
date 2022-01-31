@@ -1,8 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital@1&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital@1&family=Press+Start+2P&family=Supermercado+One&display=swap');
 .navbar{
-    background-color: rgb(169, 167, 179);
-    list-style:none
+    background: linear-gradient(to bottom, #403820,rgba(121, 85, 39, 0.9));
+    width: 100%;
+    list-style:none;
+    display: flex;
+    justify-content: flex-end;
+    text-decoration: none;
+    box-shadow: none;
+    margin-top: -52px;
 }
 
 .lista{
+    color: #786840;
     list-style: none;
+    text-decoration: none;
+    margin-right: 30px;
+    transition-duration: 0.8s;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+}
+.lista:hover{
+    text-decoration: none;
+    text-shadow: 2px 2px 4px #d0d0b8;
+    color: rgb(218, 210, 200);
+    border-radius: 2px;
+}
+
+a:link, a:visited {
+    text-decoration:none;
+}
+
+.title_food{
+    padding-top: 12px;
+    color: #908868;
+    font-family: 'Supermercado One', cursive;
+    font-weight: bold;
+    font-size: 29px;
+    margin-right: 30vh;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import {useDispatch} from 'react-redux';
 import { searchByName } from "../actions/indexAction";
+import './styles/SearchBar.css';
 
 export default function SearchBar(){
     const [search,setSearch]= useState('');
@@ -22,9 +23,9 @@ export default function SearchBar(){
         <div>
     
             <form onSubmit={onSubmit}>
-            <div>
-                <input type="text" placeholder="Search recipe" value={search} onChange={onInputChange} />
-                <input type="submit" value='🔍' onSubmit={onSubmit} />
+            <div className="contSearch">
+                <input className="search" type="text" placeholder="Search recipe" value={search} onChange={onInputChange} />
+                <input className="submit" type="submit" value='🔍' onSubmit={onSubmit} />
             </div>
         </form>
             
