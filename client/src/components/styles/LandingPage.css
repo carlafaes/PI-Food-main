@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.video{
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%,-50%);
+    z-index: -1;
+}
+.buttonEnter{
+    z-index: 50;
+    color: black;
+    margin-top: 60vh;
+    background:linear-gradient(to bottom, rgb(189, 185, 154),rgb(223, 223, 216));
+    font-size: 18px;
+    color: rgb(46, 57, 77);
+    padding: 10px 10px;
+    font-family: monospace;
+    border-radius: 8px;
+    border-color: cornsilk;
+    border-style: none;
+}

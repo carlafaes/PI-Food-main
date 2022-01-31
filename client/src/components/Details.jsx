@@ -5,6 +5,7 @@ import { getDetails } from "../actions/indexAction";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import imgRecipe from './img/descarga.jpeg'
+import Navbar from "./NavBar";
 
 export default function Details(){
     const dispatch= useDispatch();
@@ -20,10 +21,13 @@ export default function Details(){
 
     return(
         <div>
+            
             <div>
+            <Navbar/>
+{/* 
                     <Link to='/home'>
                         <button>Go back</button>
-                    </Link>
+                    </Link> */}
             </div>
 
             <div>

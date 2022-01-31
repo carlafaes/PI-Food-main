@@ -6,6 +6,8 @@ import { addChar,addCharType,getDiets } from "../actions/indexAction";
 import { useNavigate } from "react-router-dom";
 import { Validate } from "./Validate";
 import recipeCreate from './img/descarga.jpeg'
+import Navbar from "./NavBar";
+
 
 
 export default function Create(){
@@ -85,6 +87,9 @@ export default function Create(){
 
    return(
        <div>
+           <div>
+               <Navbar/>
+           </div>
                 {stateDiets.length > 0 ?
                 <form onSubmit={handleSubmit}>
                 <label>Name</label>

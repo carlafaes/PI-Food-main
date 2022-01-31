@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getRec } from "../actions/indexAction";
+import './styles/Navbar.css';
 
 
 export default function Navbar(){
@@ -13,18 +14,18 @@ export default function Navbar(){
     }
 
     return(
-        <div>
+        <div className='navbar'>
             <div onClick={handleClick}>
                 <Link to='/home'>
                 <ul>
-                    <li value='home'>Home</li>
+                    <li value='home' className="lista">Home</li>
                 </ul>
                 </Link>
             </div>
             <div>
                 <Link to='/create'>
                 <ul>
-                    <li value='createRec'>Create</li>
+                    <li value='createRec' className="lista" >Create</li>
                 </ul>
                 </Link>
             </div>
