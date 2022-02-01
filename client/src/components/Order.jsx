@@ -12,10 +12,10 @@ export default function Order({set}){
     }
     return(
         <div>
-            <label >Order</label>
-            <select id="btn-order" onChange={(e)=> handleSelect(e)}>
-                <option value="az">A-Z</option>
-                <option value="za">Z-A</option>
+            <label className="label1">Order Alphabetic<br/></label>
+            <select className="select1" id="btn-order" onChange={(e)=> handleSelect(e)}>
+                <option className="option1" value="az">A-Z</option>
+                <option className="option1" value="za">Z-A</option>
             </select>
         </div>
     )

@@ -13,10 +13,10 @@ export default function OrderByScore({value,set}){
 
     return(
         <div>
-            <label >Order By Score</label>
-            <select  id="btn-order" onChange={(e)=> handlerFilterByScore(e)}>
-                <option value="min" key={value}>Score Min</option>
-                <option value="max" >Score Max</option>
+            <label className="label1">Order By Score<br/></label>
+            <select className="select1"  id="btn-order" onChange={(e)=> handlerFilterByScore(e)}>
+                <option className="option1" value="min" key={value}>Score Min</option>
+                <option className="option1" value="max" >Score Max</option>
             </select>
         </div>
     )

@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect,useState } from "react";
+import { Link } from 'react-router-dom';
 import Card from "./Card";
 import Order from './Order'
 import Pagination from "./Pagination";
@@ -23,8 +24,14 @@ export default function Cards(){
     console.log(recXPage,'recXpage')
     const max= Math.ceil(renderRec.length/recXPage);
 
+    const [sidebar, setSidebar] = useState(false);
 
-   console.log(renderRec,'render rec')
+    const showSidebar = () =>{
+        setSidebar(!sidebar);
+    } 
+
+
+//    console.log(renderRec,'render rec')
 
    function handleClickReset(e){
        e.preventDefault(e);
@@ -50,27 +57,55 @@ export default function Cards(){
             <Navbar className='navbar'/>
              
              <div>
+             <Link to='#' className='menu-bars'>
+                   <button className="button1" onClick={showSidebar}>
+                   <img className="imgmenu" src='https://cdn4.iconfinder.com/data/icons/hotel-and-restaurant-line-vol-3/52/menu__list__navigation__options__restaurant__menucard__hotel-512.png' width={90} height={60}/>
+                   </button>
+                </Link>
                  <button className="btn_reset" onClick={e => {handleClickReset(e)}}>
                      Reset
                  </button>
              </div>
-             <div>
-             <SearchBar value={setOrder} set={setCurrentPage ? setCurrentPage : <h1>Loading</h1>}/>
-                    
-            </div>
-            <div>
-                <OrderCreated set={setOrder}  />
-            </div>
-            <div>
-                    <Order set={setOrder} />
-            </div>
-            <div>
-                     <OrderByScore set={setOrder}  />
-            </div>
-            <div>
-                    <FilterByDiets set={setOrder} set={setCurrentPage}/>
-            </div>
+             
+                <div>
+                <SearchBar value={setOrder} set={setCurrentPage ? setCurrentPage : <h1>Loading</h1>}/>
+                        
+                </div>
 
+               
+                <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+                    <button className="button2" onClick={showSidebar}>
+                    ❌
+                    </button>
+                    
+                    <ul  className='nav-menu-items' >
+                    <div>
+                       <li  className='navbar-toggle'>
+                        <OrderCreated set={setOrder}  />
+                       </li>
+                    </div>
+                    <div>
+                       <li className='navbar-toggle'>
+                        <Order set={setOrder} />
+                       </li>  
+                    </div>
+                    <div>
+                      <li className='navbar-toggle'>
+                        <FilterByDiets set={setOrder} set={setCurrentPage}/>
+                      </li> 
+                    </div>
+                    <div>
+                       <li className='navbar-toggle'>
+                        <OrderByScore set={setOrder}  />
+                       </li> 
+                    </div>
+                  
+
+                </ul>
+                </nav>
+                
+                
+             
             <div>
                 {renderRec && Object.values(renderRec).length > 0 ?
                      <Pagination 

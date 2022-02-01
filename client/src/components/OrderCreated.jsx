@@ -11,11 +11,15 @@ function handlerFilterCreated(e){
 }
 
 return(
-    <select onChange={e => handlerFilterCreated(e)}>
-        <option value="all">All</option>
-        <option value="created">Created</option>
-        <option value="api">Api</option>
-    </select>
+    <div>
+            <label className="label1">Order Info<br/> </label>
+            <select className="select1" onChange={e => handlerFilterCreated(e)}>
+                <option className="option1" value="all">All</option>
+                <option className="option1" value="created">Created</option>
+                <option className="option1" value="api">Api</option>
+            </select>
+    </div>
+    
 )
 }
 

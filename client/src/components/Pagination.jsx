@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import prev from './img/flechaback.png'
+import next from './img/flechanext.png'
 
 
  
@@ -30,14 +32,18 @@ export default function Pagination({currentPage,setCurrentPage,max}){
         setInput(e.target.value)
     }
      return(
-         <div>
-           <button onClick={previousPage} disabled={currentPage === 1 || currentPage < 1}>pre</button>
+         <div className='container-page'>
+           <button className='btn-page' onClick={previousPage} disabled={currentPage === 1 || currentPage < 1}>
+                ⫷prev
+            </button>
 
-           <input name='page' autoComplete='off' value={input} onKeyDown={e => onKeyDown(e)} onChange={ e => onChange(e)} />
+           <input className='input-page' name='page' autoComplete='off' value={input} onKeyDown={e => onKeyDown(e)} onChange={ e => onChange(e)} />
 
-           <p> de {max}</p>
+           <p className='max-page'> de {max}</p>
 
-           <button onClick={nextPage} disabled={currentPage === max || currentPage > max}>next</button>
+           <button className='btn-page' onClick={nextPage} disabled={currentPage === max || currentPage > max}>
+                    ⫸next
+            </button>
          </div>
      )
 }

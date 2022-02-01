@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital@1&family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital@1&family=Press+Start+2P&family=Supermercado+One&display=swap');
 .navbar{
-    background: linear-gradient(to bottom, #403820,rgba(121, 85, 39, 0.9));
+    background: linear-gradient(to bottom, #403820,rgba(119, 84, 39, 0.902));
     width: 100%;
     list-style:none;
     display: flex;
     justify-content: flex-end;
     text-decoration: none;
     box-shadow: none;
-    margin-top: -52px;
+    margin-top: 52px;
+    height: 60px;
 }
 
 .lista{
@@ -36,6 +37,6 @@ a:link, a:visited {
     color: #908868;
     font-family: 'Supermercado One', cursive;
     font-weight: bold;
-    font-size: 29px;
+    font-size: 30px;
     margin-right: 30vh;
 }
