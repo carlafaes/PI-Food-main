@@ -11,7 +11,7 @@ import OrderCreated from "./OrderCreated";
 import Navbar from "./NavBar";
 import { useDispatch,useSelector } from "react-redux";
 import { getRec } from "../actions/indexAction";
-import recipeCreated from './img/descarga.jpeg'
+import recipeCreated from './img/Alimentos-cocinar.jpg'
 import './styles/Cards.css';
 
 
@@ -114,7 +114,7 @@ export default function Cards(){
                         setCurrentPage={setCurrentPage}
                         max= {max} />
                      :
-                 <div>Recipe doesn't found</div>    
+                 <div className="not-found">Recipe doesn't found ☹️</div>    
                 }
             </div>
             
@@ -138,7 +138,7 @@ export default function Cards(){
                             name={recip.name? recip.name : 'dont have name'}
                             image={recip.image? recip.image : recipeCreated}
                             diets={recip.diets?recip.diets.map((el)=> el.name + ', '
-                            ): 'does not have diets ☹️'}
+                            ): 'does not have diets  '}
                             />
                         </div>
                     ))

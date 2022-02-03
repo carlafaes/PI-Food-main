@@ -106,20 +106,23 @@ export default function Create(){
                 <form className="form" onSubmit={handleSubmit}>
                 <label className="label-create">Name</label>
                 <input className="input-create" name='name' autoComplete="name" value={diet.name} onChange={handleChange} />
+                {err.name && (<p className="p">{err.name}</p>)}
 
                 <label className="label-create">Summary</label>
                 <input className="input-step" name='summary' value={diet.summary} onChange={handleChange} />
+                {err.summary && (<p className="p">{err.summary}</p>)}
 
                 <label className="label-create">Score</label>
                 <input className="input-create" name="score" value={diet.score} type='number' pattern="[0-100]" min="0" max="100" onChange={handleChange} />
+                {err.score && (<p className="p">{err.score}</p>)}
 
                 <label className="label-create">Health Score</label>
                 <input className="input-create" name="healthScore" type='number' pattern="[0-100]" min="0" max="100" value={diet.healthScore} onChange={handleChange} />
-
+                {err.healthScore && (<p className="p">{err.healthScore}</p>)}
 
                 <label className="label-create">Steps</label>
                 <input className="input-step" name="steps" value={diet.steps} onChange={handleChange} />
-
+                {err.steps && (<p className="p">{err.steps}</p>)}
                 
                 
                 <div>

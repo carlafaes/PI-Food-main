@@ -296,6 +296,13 @@ padding-right: 1px;
   display: grid;
   grid-auto-flow: column;
 }
-
+.not-found{
+  color:#5e5b50;
+  font-size: 28px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-family: Helvetica, sans-serif;
+  margin-top: -100px;
+}
 
 

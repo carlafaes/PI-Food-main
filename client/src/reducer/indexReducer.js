@@ -84,8 +84,8 @@ export default function rootReducer(state= initialState,action){
                  filterDiets= allDiets;
             }
             else{
-                filterDiets='createdInDb' === true?filterDiets= allDiets.filter(e => e.diets.name) : allDiets.filter(el => el.diets.find(e =>{
-                         if(e.name === action.payload){
+                filterDiets= allDiets.filter(el => el.diets.find(e =>{
+                         if(e.name == action.payload){
                              return el;
                          }
                      }))

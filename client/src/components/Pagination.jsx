@@ -7,7 +7,7 @@ import next from './img/flechanext.png'
  
 
 
-export default function Pagination({currentPage,setCurrentPage,max,handleClickReset}){
+export default function Pagination({currentPage,setCurrentPage,max}){
    const [input,setInput]= useState(1);
     
    const nextPage= ()=>{

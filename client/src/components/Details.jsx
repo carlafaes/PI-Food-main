@@ -4,7 +4,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { getDetails } from "../actions/indexAction";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import imgRecipe from './img/descarga.jpeg'
+import imgRecipe from './img/Alimentos-cocinar.jpg';
 import Navbar from "./NavBar";
 import './styles/Details.css';
 
