@@ -84,9 +84,9 @@ export const searchByName=(name)=>{
 export function addChar(payload){
     return async function(dispatch){
         const created= await axios.post('http://localhost:3001/recipe/create/',payload);
-         console.log(created)
-        return created;
-    }
+         console.log(created.data)
+        return created.data;
+    } 
 }
 
 export const addCharType = () => ({type: ADD_CHAR})

@@ -21,7 +21,7 @@ try{
         db= await Recipe.findAll({
             where:{
                 name:{
-                    [Op.eq]:name
+                    [Op.iLike]: '%' + name + '%' 
                 }
             },
             include:{
@@ -68,10 +68,12 @@ try{
                     image:ch.image,
                     steps:ch.analyzedInstructions,//analayzedInstruccions[{name:}]
                     diets: ch.diets.map((d) => { return { name: d } }),
+                    
 
                 }
                 
             })
+            console.log(db,'db')
             response=[...apiResponse,db];
             // const resF=response.flat();
             // console.log('este es el response',resF)

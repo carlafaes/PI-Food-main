@@ -88,9 +88,11 @@
   .container{
       background-repeat: no-repeat;
       width: 100%;
-      height: 170vh;
+      height: 198vh;
       margin-top: -52px;
-      background-size: 1030px 1137px;
+      z-index: 40;
+      /* background-size: 1130px 1137px; */
+      background-size: cover;
       background-image: url('https://p0.pikist.com/photos/583/129/kitchen-eat-food-cook-cooking-pan-preparation-restaurant.jpg');
   }
 
@@ -124,18 +126,20 @@
   margin-left: 2rem;
   font-size: 2rem;
   background: none;
+  z-index: 200;
 }
 
 .nav-menu {
   background: linear-gradient(to right,#795527e6,rgba(122, 83, 67, 0.5));
   width: 250px;
-  height: 100vh;
+  height: 500px;
   display: flex;
   justify-content: center;
-  position: fixed;
-  top: 49px;
+  position: relative;
+  top: -49px;
   left: -100%;
   transition: 850ms;
+  z-index: 200;
 }
 .nav-menu.active {
   left: 0;
@@ -221,7 +225,7 @@
   justify-content: center;
   width: 400px;
   left: 50vh;
-  top: -40px;
+  top: -540px;
 }
 
 .btn-page{
@@ -255,6 +259,7 @@
   margin-left: 5px;
   margin-right: 5px;
   font-family: Helvetica, sans-serif;
+  
 }
 
 .input-page{
@@ -268,6 +273,28 @@ margin-left: 2px;
 background: #817c68;
 padding-left: 10px;
 padding-right: 1px;
+}
+
+.div-card{
+  width: 970px; 
+  height: 900px;
+  margin-left: 20px;
+ padding-top: 30px;
+ display: grid;
+ grid-auto-flow: column;
+ grid-template-columns: 212px 212px 213px;
+ grid-column-gap: 30px;
+ grid-template-rows: 401px 100px;
+ grid-row-gap: 20px;
+ z-index: 40;
+ margin-top: -532px;
+}
+.div-c{
+  width: 220px;
+  height: 350px;
+  font-size: 10px;
+  display: grid;
+  grid-auto-flow: column;
 }
 
 

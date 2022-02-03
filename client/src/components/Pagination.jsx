@@ -7,7 +7,7 @@ import next from './img/flechanext.png'
  
 
 
-export default function Pagination({currentPage,setCurrentPage,max}){
+export default function Pagination({currentPage,setCurrentPage,max,handleClickReset}){
    const [input,setInput]= useState(1);
     
    const nextPage= ()=>{
@@ -19,21 +19,29 @@ export default function Pagination({currentPage,setCurrentPage,max}){
        setCurrentPage(parseInt(currentPage) - 1);
    }
     const onKeyDown=(e)=>{
+    
         if(e.keyCode === 13){
-            if(parseInt(e.target.value < 1) || parseInt(e.target.value) > Math.ceil(max) || isNaN(parseInt(e.target.value))){
+            if(parseInt(e.target.value )<= 0 || parseInt(e.target.value) > Math.ceil(max) || isNaN(parseInt(e.target.value)) ){
                 setCurrentPage(1)
                 setInput(1)
-            }else{
+                
+            }
+            else{
                 setCurrentPage(parseInt(e.target.value))
             }
         }
     }
+    // const onClick=(e)=>{
+    //     if(handleClickReset(e)){
+    //         setInput(parseInt(1))
+    //     }
+    // }
     const onChange= (e)=>{
         setInput(e.target.value)
     }
      return(
          <div className='container-page'>
-           <button className='btn-page' onClick={previousPage} disabled={currentPage === 1 || currentPage < 1}>
+           <button className='btn-page' onClick={previousPage} disabled={currentPage === 1 || currentPage < 1 || currentPage === NaN}>
                 ⫷prev
             </button>
 
@@ -41,7 +49,7 @@ export default function Pagination({currentPage,setCurrentPage,max}){
 
            <p className='max-page'> de {max}</p>
 
-           <button className='btn-page' onClick={nextPage} disabled={currentPage === max || currentPage > max}>
+           <button className='btn-page' onClick={nextPage} disabled={currentPage === max || currentPage > max || currentPage === NaN}>
                     ⫸next
             </button>
          </div>

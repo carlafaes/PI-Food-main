@@ -53,7 +53,8 @@ export default function Cards(){
     }
 
     return(
-        <div className="container">
+        <div className="fondo2">
+            <div className="container">
             <Navbar className='navbar'/>
              
              <div>
@@ -68,7 +69,7 @@ export default function Cards(){
              </div>
              
                 <div>
-                <SearchBar value={setOrder} set={setCurrentPage ? setCurrentPage : <h1>Loading</h1>}/>
+                <SearchBar value={setOrder} set={setCurrentPage ? setCurrentPage : <h1 className="loading">Loading</h1>}/>
                         
                 </div>
 
@@ -117,7 +118,7 @@ export default function Cards(){
                 }
             </div>
             
-            <div>
+            <div className="div-card">
                   {
                     renderRec === 'loading' ? 
                     <div className="container_loading">
@@ -130,8 +131,9 @@ export default function Cards(){
                          Object.values(renderRec).slice(
                         (currentPage - 1)* recXPage, (currentPage -1) * recXPage + recXPage).map(
                             (recip,index)=>(
-                        <div key={index}>
+                        <div className="div-c" key={index}>
                             <Card
+                            
                             id={recip.id}
                             name={recip.name? recip.name : 'dont have name'}
                             image={recip.image? recip.image : recipeCreated}
@@ -145,5 +147,7 @@ export default function Cards(){
             </div>
  
         </div>
+        </div>
+
     )
 }

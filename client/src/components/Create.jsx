@@ -5,8 +5,9 @@ import { useState } from "react";
 import { addChar,addCharType,getDiets } from "../actions/indexAction";
 import { useNavigate } from "react-router-dom";
 import { Validate } from "./Validate";
-import recipeCreate from './img/descarga.jpeg'
+import recipeCreate from './img/Alimentos-cocinar.jpg'
 import Navbar from "./NavBar";
+import './styles/Create.css';
 
 
 
@@ -84,37 +85,48 @@ export default function Create(){
     alert('Recipe created succesfully!');
     history('/home')
    }
+   
+   const styles={
+    width:'100%'
+}
 
    return(
        <div>
-           <div>
-               <Navbar/>
-           </div>
-                {stateDiets.length > 0 ?
-                <form onSubmit={handleSubmit}>
-                <label>Name</label>
-                <input name='name' autoComplete="name" value={diet.name} onChange={handleChange} />
+       <div className="navbar-create">
+    <Navbar/>
+    </div>
+    <div>
+    <div className="fondo-create">
+    </div>
+    </div>
+          <div className="container-form">    
+          <img className="img-create" alt="recetaCreated" src={recipeCreate} />
+              {stateDiets.length > 0 ?
+                <div>
+                <form className="form" onSubmit={handleSubmit}>
+                <label className="label-create">Name</label>
+                <input className="input-create" name='name' autoComplete="name" value={diet.name} onChange={handleChange} />
 
-                <label>Summary</label>
-                <input name='summary' value={diet.summary} onChange={handleChange} />
+                <label className="label-create">Summary</label>
+                <input className="input-step" name='summary' value={diet.summary} onChange={handleChange} />
 
-                <label>Score</label>
-                <input name="score" value={diet.score} type='number' pattern="[0-100]" min="0" max="100" onChange={handleChange} />
+                <label className="label-create">Score</label>
+                <input className="input-create" name="score" value={diet.score} type='number' pattern="[0-100]" min="0" max="100" onChange={handleChange} />
 
-                <label>Health Score</label>
-                <input name="healthScore" type='number' pattern="[0-100]" min="0" max="100" value={diet.healthScore} onChange={handleChange} />
+                <label className="label-create">Health Score</label>
+                <input className="input-create" name="healthScore" type='number' pattern="[0-100]" min="0" max="100" value={diet.healthScore} onChange={handleChange} />
 
 
-                <label>Steps</label>
-                <input name="steps" value={diet.steps} onChange={handleChange} />
+                <label className="label-create">Steps</label>
+                <input className="input-step" name="steps" value={diet.steps} onChange={handleChange} />
 
-                <img alt="recetaCreated" src={recipeCreate} />
+                
                 
                 <div>
-                <select onChange={handleSelect}>
+                <select className="select-create" onChange={handleSelect}>
                     {stateDiets.length > 0 && stateDiets.map((d)=>{
                         return(
-                            <option value={d.id} key={d.id}>
+                            <option className="option-diets" value={d.id} key={d.id}>
                                 {d.name}
                             </option>
                         )
@@ -123,27 +135,37 @@ export default function Create(){
                 
                 <div>
                     {diet.diets.map((e) => 
-                    <button key={Math.random(e)}  onClick={()=> handleDeleteDiet(e)}>
-                        <p>{e}</p>
+                    <button className="btn-diets" key={Math.random(e)}  onClick={()=> handleDeleteDiet(e)}>
+                        <img className="imgmenu" src='https://previews.123rf.com/images/favetelinguis/favetelinguis1611/favetelinguis161100089/68423989-ilustraci%C3%B3n-conceptual-de-alimentos-saludables-en-el-vector-de-estilo-plano-diferentes-frutas-y-verd.jpg' width={40} height={29}/>
                         
                     </button>
                     )}
                 </div>
-                        <ul>
-                            <li>
+                        {/* <ul>
+                            <li className="lista-diets">
                                 {diet.diets.map(e => e)}
                             </li>
-                        </ul>
+                        </ul> */}
                 </div>    
                 
 
-                <button type='submit'>Create</button>
+                <button className="btn-create" type='submit'>Create</button>
 
-            </form> :
-            <div>Loading..</div>
+            </form>
+            </div>
+            :
+             <div className="container_loading">
+             {/* <div className="porcentaje" id="porcentaje">0</div> */}
+             <div className="progress-bar orange stripes shine">
+             <span style={styles} className="loading">Loading...</span>
+             </div>
+             </div>
         }
+         </div>
+        
        </div>
-       
+      
+ 
     
 
    )

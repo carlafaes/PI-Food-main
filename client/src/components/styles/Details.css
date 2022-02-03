@@ -1,0 +1,86 @@
+.navbar-details{
+    margin-top: -51px;
+    height: 40px;
+    z-index: 50;
+}
+.fondo2{
+    background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(17, 13, 4)); 
+    height: 1280px;
+    
+}
+.fondo-detail{
+    margin-top:50px;
+    margin-left: 40px;
+   /* width: 105%;
+   height: 160vh; */
+   background-repeat: no-repeat;
+   background-size: 920px 1000px;
+   border-radius: 6px 6px 6px 6px;
+   background-image: url("https://topadventure.com/__export/1605291396423/sites/laverdad/img/2020/11/13/chef_de_europa.jpeg_554688468.jpeg");
+ z-index: -120;
+ 
+ height: 1200px; 
+}
+
+.img-details{
+    position: relative;
+    width: 40%;
+    height: 350px;
+    margin-top: 10px;
+    margin-left: -540px;
+    margin-bottom: 20px;
+    padding-top: 30px;
+    border-radius: 20px;
+    padding: 2px;
+    box-shadow: 10px 10px 20px rgba(49, 46, 43, 0.9);
+}
+.texto1{
+
+    z-index: 100;
+    position:relative;
+    margin-top: -350px;
+    margin-left: 430px;
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    width: 450px; 
+    color: #8b7e5c;
+    font-weight: bold;
+    text-shadow: 3px 3px 4px #4e4e41;
+    font-family: Helvetica, sans-serif;
+    font-size: 15px;
+    top: 5px;
+    padding-top: 10px;
+}
+.texto2{
+    width: 800px;
+    margin-left: 50px;
+    /* display: flex-box; */
+    justify-content:center;
+    align-items: center;
+    font-family: Helvetica, sans-serif;
+    font-size: 13px;
+    list-style-type:armenian;
+    margin-top: -290px;
+    z-index: 20;
+    color: #8b7e5c;
+    font-weight: bold;
+    text-shadow: 3px 3px 4px #4e4e41;
+}
+.lista_details{
+    list-style-type:armenian;
+}
+.title1{
+    color: #7e6a37;
+    text-shadow: 4px 4px 4px #2e2c27;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+}
+.score{
+    color: #786840;
+    text-shadow: 4px 4px 4px #2e2c27;
+    font-family: Helvetica, sans-serif;
+    display: flex;
+    align-items: center; 
+    justify-content: space-around;
+}
