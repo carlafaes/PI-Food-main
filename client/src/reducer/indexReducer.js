@@ -85,7 +85,7 @@ export default function rootReducer(state= initialState,action){
             }
             else{
                 filterDiets= allDiets.filter(el => el.diets.find(e =>{
-                         if(e.name == action.payload){
+                         if(e.name === action.payload){
                              return el;
                          }
                      }))

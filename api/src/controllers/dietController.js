@@ -26,11 +26,12 @@ require('dotenv').config();
                 response=response.flat()
                 //quito todos los repetidos,y set devuelve un array
                 response=new Set(response)
+                // response=response.add('ketogenic')
                 //convierto el obj de valores unicos a un array
-                response=Array.from(response)
+                 response=Array.from(response)
              
                  console.log(response)
-                //recorro el array y espero a q el modelo Diet cree las instancias con el nombre y el valor unico que contenia mi array,un valor por cada name
+               // recorro el array y espero a q el modelo Diet cree las instancias con el nombre y el valor unico que contenia mi array,un valor por cada name
                 for (el of response) {
                     if (el) await Diet.findOrCreate({
                       where: { name: el }})

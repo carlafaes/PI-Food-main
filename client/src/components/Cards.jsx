@@ -16,30 +16,35 @@ import './styles/Cards.css';
 
 
 export default function Cards(){
+    //tarigo el estado filtered con todas las recetas precargadas si aun no tiene nada muestra loading en la consola
     const renderRec= useSelector((state)=> state.filtered? state.filtered : 'loading' );
+    //uso el hook useDispatch para despachar la accion al store
     const dispatch= useDispatch();
+    //declaro la variable que va a contener el estado order que empieza con valor '' y luego se setea
     const [order,setOrder]= useState('')
     const [currentPage,setCurrentPage]= useState(1)
+    // variable que arranca en 8,ya que recXPage es la cantidad de cards que se van a renderizar en el componente cards 
     const [recXPage,setRecXPage]= useState(8);
     console.log(recXPage,'recXpage')
+    //variable max hace una division del estado renderRec(que tiene todas las recetas) y recXPage,se usa Math.ceil para que redondee el resultado para arriba
     const max= Math.ceil(renderRec.length/recXPage);
-
+    //la constante sideBar arranca con su estado en false, ya que quiero q no se visualice en el inicio
     const [sidebar, setSidebar] = useState(false);
-
+    //constante que guarda la funcion que mostrara el menu lateral,si esta en false cambia a true y viceversa
     const showSidebar = () =>{
         setSidebar(!sidebar);
     } 
 
 
 //    console.log(renderRec,'render rec')
-
+ //funcion que al pasarle el event va a invocar la funcion getRec que trae todas las recetas y setea la pagina actual en 1
    function handleClickReset(e){
        e.preventDefault(e);
        dispatch(getRec())
        setCurrentPage(1)
    }
 
-
+   //hook que simula efectos secundarios en el componente(componentDidMount, componentDidUpdate y componentWillUnmount)
     useEffect(()=>{
         dispatch(getRec());
          dispatch(getDiets())
