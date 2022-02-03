@@ -16,8 +16,10 @@ try{
    
     if(name){
         //hago el pedido a la api del name de la receta
+        
         api=(await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&titleMatch=${name}&addRecipeInformation=true&number=100`)).data.results;
-        //busco en la db ek nombre
+        // console.log(api)
+        //busco en la db el nombre
         db= await Recipe.findAll({
             where:{
                 name:{
@@ -29,6 +31,8 @@ try{
             }
             
         })
+
+        // api= await api.filter(e=> e.name.toLowerCase())
         //si existen mapeo la info que quiero obtener
         if(api || db){
             let apiResponse= api.map((ch)=>{
@@ -54,9 +58,10 @@ try{
     }else{
         //pedido a la api
         api= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+            //espero la informacion que tiene el model Recipe e incluyo la del model Diet
         db= await Recipe.findAll({include:Diet})
         // console.log('este es el db de el else',db)
-        //mapeo la info que necesito
+        //mapeo la info que necesito,y les pongo el nombre/value que quiero que tengan,para luego accederlos
         if(api || db){
             let apiResponse= api.data.results?.map((ch)=>{
                 return{
@@ -101,7 +106,7 @@ try{
 
 const postRecipes= async (req,res,next)=>{
     try{
-        const aRecipe= req.body;
+        const aRecipe= req.body;//informacion que me llega del body la guardo en la variable
          console.log(aRecipe)
 
         let [newRecipe,rec]= await Recipe.findOrCreate({
@@ -113,15 +118,16 @@ const postRecipes= async (req,res,next)=>{
                 summary: aRecipe.summary,
                 score: aRecipe.score,
                 healthScore: aRecipe.healthScore,
-                steps: aRecipe.steps.toString(),
+                steps: aRecipe.steps.toString(),//paso de array a string
                 image:aRecipe.image,
                 //created:true,
             }
         })
 
-        
+        //espero la informacion del findORCreate y le seteo las dietas
         await newRecipe.setDiets(aRecipe.diets.flat())
         console.log(newRecipe)
+        //retorno la nueva receta creada
         return res.send(newRecipe)
     }
     catch(err){
@@ -130,13 +136,13 @@ const postRecipes= async (req,res,next)=>{
 }
 
 const idRecipes= async (req,res)=>{
-const {id}= req.params;
+const {id}= req.params;//recibo el id por parametros
 
-let recipes;
+let recipes;//declaro una variable vacia que luego llenare con la informacion que sea necesaria en cualquiera sea el caso
 try{
-    //busqueda de id alfanumerico
+    //busqueda de id alfanumerico, en los casos en los que los modelos tienen id UUID
     if(isNaN(id)){
-        recipes= await Recipe.findAll({
+        recipes= await Recipe.findAll({//espero encontrar en el modelo Recipe el id coincidente
             where:{
                 id:{
                     [Op.eq]: id
@@ -150,17 +156,18 @@ try{
     else{
         //busqueda id de la api
         recipes= await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
+        //accedo al data que es donde se guarda la info axios
         recipes= recipes.data;
 
     }
-    recipes?
+    recipes?//si existe lo envio por medio de un json,sino envio un status 404 con el err
     res.status(200).json(recipes):
     res.status(404).send("the recipes doesn't exist")
 }
 catch(error){
     console.log(error,'error catch del id')
 }
-// console.log(idRecipes,'este es el idRecipes')
+
 }
 
 

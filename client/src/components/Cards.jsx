@@ -10,7 +10,7 @@ import SearchBar from "./SearchBar";
 import OrderCreated from "./OrderCreated";
 import Navbar from "./NavBar";
 import { useDispatch,useSelector } from "react-redux";
-import { getRec } from "../actions/indexAction";
+import { getRec,getDiets } from "../actions/indexAction";
 import recipeCreated from './img/Alimentos-cocinar.jpg'
 import './styles/Cards.css';
 
@@ -42,8 +42,9 @@ export default function Cards(){
 
     useEffect(()=>{
         dispatch(getRec());
-        // dispatch(getDiets())
+         dispatch(getDiets())
         console.log(getRec())
+        console.log(getDiets(),'getdiets')
 
 
     },[dispatch]);

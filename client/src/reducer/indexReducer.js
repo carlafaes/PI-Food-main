@@ -15,7 +15,7 @@ export default function rootReducer(state= initialState,action){
                 ...state,
                 recipes: action.payload,
                 filtered:action.payload,//cargo todas las recetas tambien en ese estado para que luego filtre sobre la cantidad completa de recetas
-                diets:action.payload
+                // diets:action.payload
             }
         case ORDER:
             let orderState= state.recipes;

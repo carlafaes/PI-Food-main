@@ -129,7 +129,7 @@ export default function Create(){
                 <select className="select-create" onChange={handleSelect}>
                     {stateDiets.length > 0 && stateDiets.map((d)=>{
                         return(
-                            <option className="option-diets" value={d.id} key={d.id}>
+                            <option className="option-diets" value={d.name} key={d.id}>
                                 {d.name}
                             </option>
                         )
@@ -139,8 +139,8 @@ export default function Create(){
                 <div>
                     {diet.diets.map((e) => 
                     <button className="btn-diets" key={Math.random(e)}  onClick={()=> handleDeleteDiet(e)}>
-                        <img className="imgmenu" src='https://previews.123rf.com/images/favetelinguis/favetelinguis1611/favetelinguis161100089/68423989-ilustraci%C3%B3n-conceptual-de-alimentos-saludables-en-el-vector-de-estilo-plano-diferentes-frutas-y-verd.jpg' width={40} height={29}/>
-                        
+                        <img className="imgmenu" src='https://png.pngtree.com/png-clipart/20191121/original/pngtree-chef-cap-icon-for-your-design-websites-and-projects-png-image_5149051.jpg' width={40} height={25}/>
+                        <p className="p-1">{e}</p>
                     </button>
                     )}
                 </div>

@@ -135,9 +135,10 @@
   
 }
  .btn-diets{
-    border-radius: 3px;
+    border-radius: 4px;
+    display: inline-block;
     background:linear-gradient(to right, #f0e8d0,#b4a66f);
-    width: 50px;
+    width: 55px;
     height: 33px;
     border-color: #d6d69c;
     transition: 1s;
@@ -146,12 +147,18 @@
     margin-top: 10px;
     padding-top: 10px 10px;  
  }
+ .p-1{
+   margin-top: -30px;
+   color: rgb(36, 23, 4);
+   font-size: 10px;
+ }
  .lista-diets{
      list-style: none;
      color: transparent;
  }
  .option-diets{
    width: 60px;
+
  }
  .p{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
