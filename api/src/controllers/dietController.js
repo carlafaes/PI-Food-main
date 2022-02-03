@@ -8,23 +8,34 @@ require('dotenv').config();
         try{
             let diets= await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
 
-            
+            //mapeo la informacion ingresando primero a data, y luego a result, de ahi tomo solo los name dentro de mi JSON
                 let response= diets.data.results?.map((e)=>{
                     return{
-                        id:e.id,
+
                         name: e.diets.toString(),//pasamos de array a string
                     }
                     
                 })
-                
-                // console.log(response)
-                let responseFlat=response.flat();
-                console.log(responseFlat)
-                const list= responseFlat.filter(e => e.name)
-                 console.log(list,'list')
+                //seteo el response para quitar los obj repetidos,lo mapeo y lo convierto a JSON
+                response=new Set(response.map(JSON.stringify))
+                //con Array.from lo paso a array y lo mapeo y convierto a obj de JS
+                response=Array.from(response).map(JSON.parse)
+                //vuelvo a aplicar un map y a el value=nombre lo separo en donde se encuentran las comas
+                response=response.map(e=>e.name.split(','))
+                //aplano el array para q no sea multidimensional
+                response=response.flat()
+                //quito todos los repetidos,y set devuelve un array
+                response=new Set(response)
+                //convierto el obj de valores unicos a un array
+                response=Array.from(response)
+             
+                 console.log(response)
+                //recorro el array y espero a q el modelo Diet cree las instancias con el nombre y el valor unico que contenia mi array,un valor por cada name
+                for (el of response) {
+                    if (el) await Diet.findOrCreate({
+                      where: { name: el }})
+                }
             
-
-               let responseFlat2= await Promise.all(list.map(e => Diet.findOrCreate({where: e})))
                return 'datos diets cargados'
         }
         catch(error){
@@ -32,7 +43,7 @@ require('dotenv').config();
         }
 
     }
-
+ //espero a q mi funcion encuentre todo lo q esta cargado en el model Diet y me lo devuelva
     const getDiets= async (req,res,next)=>{
         try{
             let diets= await Diet.findAll();
