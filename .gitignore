@@ -105,3 +105,4 @@ dist
 
 # package-lock.json
 package-lock.json
+api/src/info/api-key.txt
