@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     summary:{
-      type:DataTypes.STRING,
+      type:DataTypes.TEXT,
       allowNull:false,
     },
     score:{
@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
       type:DataTypes.STRING,
     },
     steps:{
-      type:DataTypes.STRING
+      type:DataTypes.TEXT,
     },
     createdInDb:{
       type:DataTypes.BOOLEAN,

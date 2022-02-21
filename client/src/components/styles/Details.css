@@ -44,9 +44,9 @@
     flex-direction: column;
     height: 650px;
     width: 450px; 
-    color: #8b7e5c;
+    color: #c5b896;
     font-weight: bold;
-    text-shadow: 3px 3px 4px #4e4e41;
+    text-shadow: 3px 3px 4px #27271f;
     font-family: Helvetica, sans-serif;
     font-size: 15px;
     top: 5px;
@@ -63,9 +63,9 @@
     list-style-type:armenian;
     margin-top: -290px;
     z-index: 20;
-    color: #8b7e5c;
+    color: #beb191;
     font-weight: bold;
-    text-shadow: 3px 3px 4px #4e4e41;
+    text-shadow: 3px 3px 4px #2e2e26;
 }
 .lista_details{
     list-style-type:armenian;

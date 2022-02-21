@@ -17,7 +17,7 @@ export default function FilterByDiets(){
 
     return(
         <div>
-            <label className="label1" >Filter By Diets</label>
+            <label className="label1" >Filter By Diets<br/></label>
             <select className="select1" id="btn-diets"  onChange={e => handlerFilterDiets(e)}>
             <option className="option1" value='diets' >All Diets</option>
             {allDiets && allDiets.map((el)=>(

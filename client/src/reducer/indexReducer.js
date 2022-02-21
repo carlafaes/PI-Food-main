@@ -1,4 +1,4 @@
-import { GET_RECIPES,GET_DIETS,GET_DETAILS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR,FILTER_CREATED } from "../actions/types";
+import { GET_RECIPES,GET_DIETS,GET_DETAILS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR,FILTER_CREATED,ORDER_BY_HEALTHSCORE } from "../actions/types";
 
 const initialState={
     recipes:[],
@@ -76,6 +76,27 @@ export default function rootReducer(state= initialState,action){
             return{
                 ...state,
                filtered:stateScore
+            }  
+
+            case ORDER_BY_HEALTHSCORE:
+            const stateHealthScore=state.filtered;
+            console.log(stateHealthScore)
+            if(action.payload === 'min'){
+                 const hscoreAsc = (a, b) => 
+                 Number(a.healthScore) - 
+                 Number(b.healthScore) 
+                 stateHealthScore.sort(hscoreAsc)
+
+            }
+            if(action.payload === 'max'){
+                const hscoreDsc = (a, b) => 
+                Number(b.healthScore) - 
+                Number(a.healthScore) 
+                stateHealthScore.sort(hscoreDsc)
+            }
+            return{
+                ...state,
+               filtered:stateHealthScore
             }  
         case ORDER_BY_DIETS:
             const allDiets= state.recipes;

@@ -1,4 +1,4 @@
-import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR,FILTER_CREATED } from "./types";
+import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR,FILTER_CREATED,ORDER_BY_HEALTHSCORE } from "./types";
 import axios from 'axios';
 
 export const ROUT_GET_RECIPES = `http://localhost:3001/recipe/getRecipes`;
@@ -58,6 +58,13 @@ export function orderByScore(value){
         payload:value,
     }
 }
+export function orderByhealthScore(value){
+    return{
+        type:ORDER_BY_HEALTHSCORE,
+        payload:value,
+    }
+}
+
 
 export function orderByDiets(payload){
     return{
@@ -97,3 +104,4 @@ export function filterCreated(payload){
         payload
     }
 }
+

@@ -1,6 +1,6 @@
 .card1{
     background-image: linear-gradient(43deg, #903008 0%,#782008 46%,#ffcc70 100%);
-    height: 350px;
+    height: 294px;
     width: 220px;
     border-radius: 8px;
     /*  width: 200px;
@@ -16,7 +16,7 @@
 }
 .img-card{
 width: 220px;
-height: 350px;
+height: 294px;
 background-color: burlywood;
 top: 0;
 border-radius: 8px;
@@ -40,7 +40,7 @@ border-radius: 8px;
     background-image: linear-gradient(43deg, #903008 0%,#782008 46%,#ffcc70 100%);
     /* width: 220px; */
     position: relative;
-    top: -365px;
+    top: -309px;
     left: 0px;
     width: 100%;
     height: 100%;
@@ -68,7 +68,7 @@ background-color: burlywood;
 .btn-card1{
     z-index: 20;
     position: relative;
-    top: -355px;
+    top: -305px;
     color:#5c5234;
     font-size:12px;
     font-family: Helvetica, sans-serif;

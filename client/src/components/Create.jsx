@@ -101,6 +101,7 @@ export default function Create(){
     </div>
           <div className="container-form">    
           <img className="img-create" alt="recetaCreated" src={recipeCreate} />
+          
               {stateDiets.length > 0 ?
                 <div>
                 <form className="form" onSubmit={handleSubmit}>
@@ -113,7 +114,7 @@ export default function Create(){
                 {err.summary && (<p className="p">{err.summary}</p>)}
 
                 <label className="label-create">Score</label>
-                <input className="input-create" name="score" value={diet.score} type='number' pattern="[0-100]" min="0" max="100" onChange={handleChange} />
+                <input className="input-create" name="score" value={diet.score} type='number' pattern="[0-100]"  onChange={handleChange} />
                 {err.score && (<p className="p">{err.score}</p>)}
 
                 <label className="label-create">Health Score</label>
@@ -129,7 +130,7 @@ export default function Create(){
                 <select className="select-create" onChange={handleSelect}>
                     {stateDiets.length > 0 && stateDiets.map((d)=>{
                         return(
-                            <option className="option-diets" value={d.name} key={d.id}>
+                            <option className="option-diets" label={d.name} value={d.id} key={d.id} name={d.name}>
                                 {d.name}
                             </option>
                         )
@@ -140,7 +141,7 @@ export default function Create(){
                     {diet.diets.map((e) => 
                     <button className="btn-diets" key={Math.random(e)}  onClick={()=> handleDeleteDiet(e)}>
                         <img className="imgmenu" src='https://png.pngtree.com/png-clipart/20191121/original/pngtree-chef-cap-icon-for-your-design-websites-and-projects-png-image_5149051.jpg' width={40} height={25}/>
-                        <p className="p-1">{e}</p>
+                       {/* <p className="p-1">{e}</p> */}
                     </button>
                     )}
                 </div>

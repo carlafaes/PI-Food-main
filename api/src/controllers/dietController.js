@@ -26,7 +26,7 @@ require('dotenv').config();
                 response=response.flat()
                 //quito todos los repetidos,y set devuelve un array
                 response=new Set(response)
-                // response=response.add('ketogenic')
+                 response=response.add('ketogenic')
                 //convierto el obj de valores unicos a un array
                  response=Array.from(response)
              

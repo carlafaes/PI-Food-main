@@ -9,7 +9,7 @@
     height: 30px;
     padding: 6px ;
     width: 100vh;
-    margin: 200px 150px;         
+    margin: 200px 66px;         
     border-radius: 10px;
     box-shadow: 0 1px 5px #b09868 inset, 0 1px 0 #444;           
 }
@@ -88,12 +88,13 @@
   .container{
       background-repeat: no-repeat;
       width: 100%;
-      height: 198vh;
+      height: 230vh;
       margin-top: -52px;
       z-index: 40;
-      /* background-size: 1130px 1137px; */
-      background-size: cover;
-      background-image: url('https://p0.pikist.com/photos/583/129/kitchen-eat-food-cook-cooking-pan-preparation-restaurant.jpg');
+      background-size: 1007px 1602px;
+      /* background-size: cover; */
+      /* background-image: url('https://p0.pikist.com/photos/583/129/kitchen-eat-food-cook-cooking-pan-preparation-restaurant.jpg'); */
+      background-image: url('https://i.pinimg.com/originals/6f/0e/ea/6f0eeaea86a0adf4fdd2e359588abeca.jpg');
   }
 
   .btn_reset{
@@ -132,7 +133,7 @@
 .nav-menu {
   background: linear-gradient(to right,#795527e6,rgba(122, 83, 67, 0.5));
   width: 250px;
-  height: 500px;
+  height: 551px;
   display: flex;
   justify-content: center;
   position: relative;
@@ -193,18 +194,18 @@
   color: #ddd2c3ab;
   font-family: Helvetica, sans-serif;
     font-weight: bold;
-    font-size: 19px;
+    font-size: 15px;
 }
 
 .select1{
   background:linear-gradient(to right, #403030,rgb(144, 40, 0,0.2));
   border-style: unset;
-  font-size: 15px;
+  font-size: 14px;
   border-radius: 3px;
   transition: 0.5s;
   margin-top: 5px;
   height: 25px;
-
+padding-top: 10px;
 }
 
 .select1:hover{
@@ -276,15 +277,15 @@ padding-right: 1px;
 }
 
 .div-card{
-  width: 970px; 
+  width: 878px; 
   height: 900px;
-  margin-left: 20px;
+  margin-left: 123px;
  padding-top: 30px;
  display: grid;
  grid-auto-flow: column;
- grid-template-columns: 212px 212px 213px;
+ grid-template-columns: 212px 220px 213px;
  grid-column-gap: 30px;
- grid-template-rows: 401px 100px;
+ grid-template-rows: 336px 357px 200px;
  grid-row-gap: 20px;
  z-index: 40;
  margin-top: -532px;

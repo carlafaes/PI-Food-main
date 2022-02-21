@@ -41,7 +41,7 @@ export default function Pagination({currentPage,setCurrentPage,max}){
     }
      return(
          <div className='container-page'>
-           <button className='btn-page' onClick={previousPage} disabled={currentPage === 1 || currentPage < 1 || currentPage === NaN}>
+           <button className='btn-page' onClick={previousPage} disabled={currentPage === 1 || currentPage < 1 || currentPage === isNaN}>
                 ⫷prev
             </button>
 
@@ -49,7 +49,7 @@ export default function Pagination({currentPage,setCurrentPage,max}){
 
            <p className='max-page'> de {max}</p>
 
-           <button className='btn-page' onClick={nextPage} disabled={currentPage === max || currentPage > max || currentPage === NaN}>
+           <button className='btn-page' onClick={nextPage} disabled={currentPage === max || currentPage > max || currentPage === isNaN}>
                     ⫸next
             </button>
          </div>

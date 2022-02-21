@@ -24,7 +24,7 @@ export default function Cards(){
     const [order,setOrder]= useState('')
     const [currentPage,setCurrentPage]= useState(1)
     // variable que arranca en 8,ya que recXPage es la cantidad de cards que se van a renderizar en el componente cards 
-    const [recXPage,setRecXPage]= useState(8);
+    const [recXPage,setRecXPage]= useState(9);
     console.log(recXPage,'recXpage')
     //variable max hace una division del estado renderRec(que tiene todas las recetas) y recXPage,se usa Math.ceil para que redondee el resultado para arriba
     const max= Math.ceil(renderRec.length/recXPage);
@@ -66,7 +66,7 @@ export default function Cards(){
              <div>
              <Link to='#' className='menu-bars'>
                    <button className="button1" onClick={showSidebar}>
-                   <img className="imgmenu" src='https://cdn4.iconfinder.com/data/icons/hotel-and-restaurant-line-vol-3/52/menu__list__navigation__options__restaurant__menucard__hotel-512.png' width={90} height={60}/>
+                   <img className="imgmenu" alt="cheff" src='https://cdn4.iconfinder.com/data/icons/hotel-and-restaurant-line-vol-3/52/menu__list__navigation__options__restaurant__menucard__hotel-512.png' width={90} height={60}/>
                    </button>
                 </Link>
                  <button className="btn_reset" onClick={e => {handleClickReset(e)}}>

@@ -51,7 +51,7 @@ try{
             })
             //concateno info de api y db, y le aplico el metodo flat para que aplane arrays anidados
             response=[...db,apiResponse].flat();
-             console.log(apiResponse)
+            //  console.log(apiResponse)
         }
         
         
@@ -107,7 +107,7 @@ try{
 const postRecipes= async (req,res,next)=>{
     try{
         const aRecipe= req.body;//informacion que me llega del body la guardo en la variable
-         console.log(aRecipe)
+        //  console.log(aRecipe)
 
         let [newRecipe,rec]= await Recipe.findOrCreate({
              //busca una receta con las caracteristicas especificadas en el where, y si no lo encuentra lo crea
@@ -124,11 +124,14 @@ const postRecipes= async (req,res,next)=>{
             }
         })
 
+        //console.log(newRecipe,'new recipe')
+        //console.log(aRecipe.diets.flat(),'arecipe,diets')
         //espero la informacion del findORCreate y le seteo las dietas
-        await newRecipe.setDiets(aRecipe.diets.flat())
+         await newRecipe.setDiets(aRecipe.diets.flat())
         console.log(newRecipe)
-        //retorno la nueva receta creada
+        // //retorno la nueva receta creada
         return res.send(newRecipe)
+
     }
     catch(err){
         next(err,'este error viene desde postRecipes')

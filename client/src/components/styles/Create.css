@@ -135,12 +135,12 @@
   
 }
  .btn-diets{
-    border-radius: 4px;
+    border-radius: 6px;
     display: inline-block;
     background:linear-gradient(to right, #f0e8d0,#b4a66f);
-    width: 55px;
-    height: 33px;
-    border-color: #d6d69c;
+    width: 50px;
+    height: 32px;
+    border-color: #a8a849;
     transition: 1s;
     font-size: 10px;
     margin-left: 35px;
@@ -164,4 +164,10 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: red;
   font-size: 12px;
+ }
+ .required{
+   color: coral;
+   font-size: 20px;
+   top: -200px;
+
  }
