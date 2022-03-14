@@ -1,8 +1,8 @@
 import { GET_RECIPES,GET_DETAILS,GET_DIETS,ORDER,ORDER_BY_SCORE,ORDER_BY_DIETS,SEARCH_BY_NAME,ADD_CHAR,FILTER_CREATED,ORDER_BY_HEALTHSCORE } from "./types";
 import axios from 'axios';
 
-export const ROUT_GET_RECIPES = `http://localhost:3001/recipe/getRecipes`;
-export const ROUT_GET_DIETS= `http://localhost:3001/diet/getDiets`;
+export const ROUT_GET_RECIPES = `/recipe/getRecipes`;
+export const ROUT_GET_DIETS= `/diet/getDiets`;
 console.log(ROUT_GET_RECIPES)
 
 export function getRec(){
@@ -22,7 +22,7 @@ export function getRec(){
 }
 export function getDetails(id){
     return async(dispatch)=>{
-        const details2= await (await axios.get('http://localhost:3001/recipe/' + id)).data;
+        const details2= await (await axios.get('/recipe/' + id)).data;
         console.log(details2,'details llamado axios')
         // const data= details2.data;
         // console.log('este es el data getdetail', data)
@@ -75,7 +75,7 @@ export function orderByDiets(payload){
 export const searchByName=(name)=>{
     return async (dispatch)=>{
         try{
-            const getName= await axios.get(`http://localhost:3001/recipe/getRecipes?name=${name}`);
+            const getName= await axios.get(`/recipe/getRecipes?name=${name}`);
             const searchName=getName.data.flat()
             console.log(searchName,'este es el search name')
             return dispatch({
@@ -90,7 +90,7 @@ export const searchByName=(name)=>{
 }
 export function addChar(payload){
     return async function(dispatch){
-        const created= await axios.post('http://localhost:3001/recipe/create/',payload);
+        const created= await axios.post('/recipe/create/',payload);
          console.log(created.data)
         return created.data;
     } 

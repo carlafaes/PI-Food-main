@@ -23,7 +23,7 @@ const {preCharge}= require ('./src/controllers/dietController')
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(3001, async() => {
+  server.listen(process.env.PORT, async() => {
     console.log('%s cargando diets..')
     const preload= await preCharge()
     console.log('%s ' + preload)
