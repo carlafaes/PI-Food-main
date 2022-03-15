@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js');
 const {preCharge}= require ('./src/controllers/dietController')
 
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(process.env.PORT, async() => {
     console.log('%s cargando diets..')
     const preload= await preCharge()
