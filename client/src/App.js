@@ -9,9 +9,6 @@ import Create from './components/Create';
 function App() {
   return (
      <div className="App">
-       {/* <div>
-         <Navbar/>
-       </div> */}
       <Routes>
          <Route path='/home/create/:id' element={<Navbar/>} /> 
         <Route path='/' element={<LandingPage/>} />
